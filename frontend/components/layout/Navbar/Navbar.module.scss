@@ -1,0 +1,65 @@
+.shadow {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color),
+    0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.nav {
+  padding: 0 10px;
+  width: 100%;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 5rem;
+}
+
+.navLogo {
+  height: 50%;
+  width: 10vw;
+  position: relative;
+}
+
+.searchBar {
+  align-items: center;
+  height: 100%;
+
+  form {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  input {
+    width: 50vw;
+    border: 1px solid #e6e3dc;
+    border-radius: 5px 0 0 5px;
+    height: 40%;
+  }
+
+  button {
+    border: 1px solid #e6e3dc;
+    background-color: #f7f7f5;
+    border-radius: 0 5px 5px 0;
+    height: 40%;
+  }
+}
+
+.user {
+  border-left: 1px solid #e6e3dc;
+  width: 15vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  button {
+    padding: 8px 15px;
+    background-color: white;
+    border-radius: 5px;
+  }
+}
