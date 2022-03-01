@@ -1,24 +1,130 @@
 # GraphQL schema example
 #
 # https://gqlgen.com/getting-started/
-
 directive @goField(
   forceResolver: Boolean
   name: String
 ) on FIELD_DEFINITION | INPUT_FIELD_DEFINITION
 
+# new directive
+directive @auth on FIELD_DEFINITION
+
 scalar Any
+scalar Time
+scalar Date
 
 type User {
   id: ID!
   name: String!
   email: String!
+  password: String!
+  phone: String!
+  gender: String!
+  dob: Date!
+  image: String!
+  role: String!
+  isSuspended: Boolean!
+  shop: Shop! @goField(forceResolver: true)
+  carts: [Cart!]! @goField(forceResolver: true)
+  addresses: [Address!]! @goField(forceResolver: true)
 }
 
 input NewUser {
   name: String!
   email: String!
   password: String!
+}
+
+input NewShop {
+  name: String!
+  slug: String!
+  phone: String!
+  city: String!
+  postalCode: String!
+  address: String!
+}
+
+type Shop {
+  id: ID!
+  name: String!
+  slug: String!
+  phone: String!
+  slogan: String!
+  description: String!
+  image: String!
+  openTime: Time!
+  closeTime: Time!
+  isOpen: Boolean!
+  reputationPoint: Int!
+  user: User! @goField(forceResolver: true)
+  products: [Product!]! @goField(forceResolver: true)
+  city: String!
+  postalCode: String!
+  address: String!
+}
+
+type Product {
+  id: ID!
+  originalId: String!
+  name: String!
+  images: [ProductImage!]! @goField(forceResolver: true)
+  description: String!
+  price: Int!
+  stock: Int!
+  discount: Int!
+  metadata: [ProductMetadata] @goField(forceResolver: true)
+  createdAt: Time!
+  category: Category! @goField(forceResolver: true)
+  shop: Shop! @goField(forceResolver: true)
+}
+
+type ProductMetadata {
+  id: ID!
+  label: String!
+  value: String!
+  product: Product! @goField(forceResolver: true)
+}
+
+input NewProduct {
+  name: String!
+  description: String!
+  images: [String!]!
+  price: Int!
+  stock: Int!
+  discount: Int!
+  categoryId: String!
+  label: String!
+  value: String!
+}
+
+type Category {
+  id: ID!
+  name: String!
+  products: [Product!]! @goField(forceResolver: true)
+}
+
+type Address {
+  id: ID!
+  label: String!
+  receiver: String!
+  phone: String!
+  city: String!
+  postalCode: String!
+  address: String!
+  user: User! @goField(forceResolver: true)
+}
+
+type Cart {
+  id: ID!
+  product: Product! @goField(forceResolver: true)
+  user: User! @goField(forceResolver: true)
+  quantity: Int!
+}
+
+type ProductImage {
+  id: ID!
+  product: Product! @goField(forceResolver: true)
+  image: String!
 }
 
 type AuthOps {
@@ -28,8 +134,21 @@ type AuthOps {
 
 type Query {
   user(id: ID!): User! @goField(forceResolver: true)
+  product(id: ID!): Product! @goField(forceResolver: true)
+  users: [User!]! @goField(forceResolver: true)
+  categories: [Category!]! @goField(forceResolver: true)
+  products(limit: Int!, offset: Int!): [Product!]! @goField(forceResolver: true)
+  productsPaginate(limit: Int!, offset: Int!, shopID: String!): [Product!]!
+    @goField(forceResolver: true)
+  getCurrentUser: User! @goField(forceResolver: true) @auth
+  getCurrentShop: Shop! @goField(forceResolver: true) @auth
+  # Add Protected Resource
+  protected: String! @goField(forceResolver: true) @auth
 }
 
 type Mutation {
   auth: AuthOps! @goField(forceResolver: true)
+  openShop(input: NewShop!): Shop! @auth
+  createCategory(name: String!): Category!
+  addProduct(input: NewProduct!): Product! @auth
 }

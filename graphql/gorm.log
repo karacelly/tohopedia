@@ -1,0 +1,855 @@
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.510ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:11
+[0m[33m[0.520ms] [34;1m[rows:-][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = 'tohopedia' AND table_name = 'categories' AND table_type = 'BASE TABLE'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.514ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:205
+[0m[33m[3.092ms] [34;1m[rows:-][0m SELECT column_name, is_nullable, data_type, character_maximum_length, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'tohopedia' AND table_name = 'categories' ORDER BY ORDINAL_POSITION
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[1.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:11
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = 'tohopedia' AND table_name = 'users' AND table_type = 'BASE TABLE'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.555ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:205
+[0m[33m[3.066ms] [34;1m[rows:-][0m SELECT column_name, is_nullable, data_type, character_maximum_length, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'tohopedia' AND table_name = 'users' ORDER BY ORDINAL_POSITION
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:11
+[0m[33m[0.512ms] [34;1m[rows:-][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = 'tohopedia' AND table_name = 'shops' AND table_type = 'BASE TABLE'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:205
+[0m[33m[2.548ms] [34;1m[rows:-][0m SELECT column_name, is_nullable, data_type, character_maximum_length, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'tohopedia' AND table_name = 'shops' ORDER BY ORDINAL_POSITION
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.511ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:11
+[0m[33m[2.553ms] [34;1m[rows:-][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE constraint_schema = 'tohopedia' AND table_name = 'shops' AND constraint_name = 'fk_users_shop'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.509ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:11
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = 'tohopedia' AND table_name = 'products' AND table_type = 'BASE TABLE'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.510ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:205
+[0m[33m[3.067ms] [34;1m[rows:-][0m SELECT column_name, is_nullable, data_type, character_maximum_length, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'tohopedia' AND table_name = 'products' ORDER BY ORDINAL_POSITION
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.552ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:11
+[0m[33m[0.512ms] [34;1m[rows:-][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE constraint_schema = 'tohopedia' AND table_name = 'products' AND constraint_name = 'fk_categories_products'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:11
+[0m[33m[0.509ms] [34;1m[rows:-][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE constraint_schema = 'tohopedia' AND table_name = 'products' AND constraint_name = 'fk_shops_products'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.511ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:12
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = 'tohopedia' AND table_name = 'categories' AND table_type = 'BASE TABLE'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:205
+[0m[33m[3.054ms] [34;1m[rows:-][0m SELECT column_name, is_nullable, data_type, character_maximum_length, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'tohopedia' AND table_name = 'categories' ORDER BY ORDINAL_POSITION
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.509ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:12
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = 'tohopedia' AND table_name = 'users' AND table_type = 'BASE TABLE'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.512ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:205
+[0m[33m[2.547ms] [34;1m[rows:-][0m SELECT column_name, is_nullable, data_type, character_maximum_length, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'tohopedia' AND table_name = 'users' ORDER BY ORDINAL_POSITION
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.509ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:12
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = 'tohopedia' AND table_name = 'shops' AND table_type = 'BASE TABLE'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:205
+[0m[33m[2.547ms] [34;1m[rows:-][0m SELECT column_name, is_nullable, data_type, character_maximum_length, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'tohopedia' AND table_name = 'shops' ORDER BY ORDINAL_POSITION
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:12
+[0m[33m[0.507ms] [34;1m[rows:-][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE constraint_schema = 'tohopedia' AND table_name = 'shops' AND constraint_name = 'fk_users_shop'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:12
+[0m[33m[0.503ms] [34;1m[rows:-][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = 'tohopedia' AND table_name = 'products' AND table_type = 'BASE TABLE'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:205
+[0m[33m[2.960ms] [34;1m[rows:-][0m SELECT column_name, is_nullable, data_type, character_maximum_length, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'tohopedia' AND table_name = 'products' ORDER BY ORDINAL_POSITION
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:12
+[0m[33m[1.001ms] [34;1m[rows:-][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE constraint_schema = 'tohopedia' AND table_name = 'products' AND constraint_name = 'fk_shops_products'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:12
+[0m[33m[0.503ms] [34;1m[rows:-][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE constraint_schema = 'tohopedia' AND table_name = 'products' AND constraint_name = 'fk_categories_products'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:12
+[0m[33m[0.502ms] [34;1m[rows:-][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = 'tohopedia' AND table_name = 'product_images' AND table_type = 'BASE TABLE'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:205
+[0m[33m[2.681ms] [34;1m[rows:-][0m SELECT column_name, is_nullable, data_type, character_maximum_length, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'tohopedia' AND table_name = 'product_images' ORDER BY ORDINAL_POSITION
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:12
+[0m[33m[1.001ms] [34;1m[rows:-][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE constraint_schema = 'tohopedia' AND table_name = 'product_images' AND constraint_name = 'fk_products_images'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:13
+[0m[33m[0.503ms] [34;1m[rows:-][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = 'tohopedia' AND table_name = 'categories' AND table_type = 'BASE TABLE'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:205
+[0m[33m[2.907ms] [34;1m[rows:-][0m SELECT column_name, is_nullable, data_type, character_maximum_length, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'tohopedia' AND table_name = 'categories' ORDER BY ORDINAL_POSITION
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:13
+[0m[33m[0.503ms] [34;1m[rows:-][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = 'tohopedia' AND table_name = 'users' AND table_type = 'BASE TABLE'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:205
+[0m[33m[2.652ms] [34;1m[rows:-][0m SELECT column_name, is_nullable, data_type, character_maximum_length, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'tohopedia' AND table_name = 'users' ORDER BY ORDINAL_POSITION
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.503ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:13
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = 'tohopedia' AND table_name = 'shops' AND table_type = 'BASE TABLE'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.810ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:205
+[0m[33m[4.004ms] [34;1m[rows:-][0m SELECT column_name, is_nullable, data_type, character_maximum_length, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'tohopedia' AND table_name = 'shops' ORDER BY ORDINAL_POSITION
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.591ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:13
+[0m[33m[0.503ms] [34;1m[rows:-][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE constraint_schema = 'tohopedia' AND table_name = 'shops' AND constraint_name = 'fk_users_shop'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:13
+[0m[33m[0.502ms] [34;1m[rows:-][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = 'tohopedia' AND table_name = 'products' AND table_type = 'BASE TABLE'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.717ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:205
+[0m[33m[5.641ms] [34;1m[rows:-][0m SELECT column_name, is_nullable, data_type, character_maximum_length, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'tohopedia' AND table_name = 'products' ORDER BY ORDINAL_POSITION
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.905ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:13
+[0m[33m[0.503ms] [34;1m[rows:-][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE constraint_schema = 'tohopedia' AND table_name = 'products' AND constraint_name = 'fk_categories_products'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.749ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:13
+[0m[33m[0.503ms] [34;1m[rows:-][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE constraint_schema = 'tohopedia' AND table_name = 'products' AND constraint_name = 'fk_shops_products'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.503ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:13
+[0m[33m[1.361ms] [34;1m[rows:-][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = 'tohopedia' AND table_name = 'product_metadata' AND table_type = 'BASE TABLE'
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.988ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:205
+[0m[33m[4.524ms] [34;1m[rows:-][0m SELECT column_name, is_nullable, data_type, character_maximum_length, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'tohopedia' AND table_name = 'product_metadata' ORDER BY ORDINAL_POSITION
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/01 08:51:01 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.693ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/01 08:51:01 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:13
+[0m[33m[1.105ms] [34;1m[rows:-][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE constraint_schema = 'tohopedia' AND table_name = 'product_metadata' AND constraint_name = 'fk_products_metadata'
+
+2022/03/01 08:57:11 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/service/user.go:47
+[0m[33m[0.509ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE email LIKE 'kesya.aw@gmail.com' LIMIT 1
+
+2022/03/01 08:57:56 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[1.863ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 08:57:56 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 08:58:03 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[1.023ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 08:58:03 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 08:58:39 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.531ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 08:58:39 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:293
+[0m[33m[0.518ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae'
+
+2022/03/01 08:58:39 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.513ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 08:58:39 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[1.092ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 08:58:39 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:247
+[0m[33m[1.026ms] [34;1m[rows:1][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae' LIMIT 1
+
+2022/03/01 08:58:39 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 08:58:42 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:247
+[0m[33m[0.503ms] [34;1m[rows:1][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae' LIMIT 1 OFFSET 1
+
+2022/03/01 08:58:42 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.588ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 08:59:17 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:247
+[0m[33m[0.565ms] [34;1m[rows:1][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae' LIMIT 10 OFFSET 1
+
+2022/03/01 08:59:17 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.556ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 08:59:49 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:247
+[0m[33m[0.649ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae' LIMIT 10
+
+2022/03/01 08:59:49 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.503ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 08:59:49 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.503ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:00:11 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.516ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:00:11 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.547ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:00:11 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.518ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:00:11 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.517ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:00:11 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:293
+[0m[33m[0.517ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae'
+
+2022/03/01 09:00:11 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:00:11 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:00:11 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.536ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:00:11 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:247
+[0m[33m[0.505ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae' LIMIT 10
+
+2022/03/01 09:00:11 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:00:11 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:00:11 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.618ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:00:11 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.504ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:02:13 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.518ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:02:13 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.509ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:02:13 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[1.027ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:02:13 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:02:13 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:293
+[0m[33m[0.522ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae'
+
+2022/03/01 09:02:13 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[1.032ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:02:13 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:02:13 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:02:13 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:247
+[0m[33m[1.001ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae' LIMIT 10
+
+2022/03/01 09:02:13 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.514ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:02:13 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.514ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:02:52 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.604ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:02:52 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[1.109ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:02:52 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.505ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:02:52 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:293
+[0m[33m[0.000ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae'
+
+2022/03/01 09:02:52 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.525ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:02:52 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.525ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:02:52 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[1.549ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:02:52 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:02:52 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:247
+[0m[33m[0.620ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae' LIMIT 10
+
+2022/03/01 09:02:52 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:02:52 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.503ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:03:16 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:247
+[0m[33m[0.613ms] [34;1m[rows:1][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae' LIMIT 1
+
+2022/03/01 09:03:16 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:03:33 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:247
+[0m[33m[0.503ms] [34;1m[rows:1][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae' LIMIT 1 OFFSET 1
+
+2022/03/01 09:03:33 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:05:38 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.738ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:05:38 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[1.240ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:05:38 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:05:38 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:293
+[0m[33m[0.520ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae'
+
+2022/03/01 09:05:38 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:05:38 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:05:38 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[1.541ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:05:38 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:05:38 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:247
+[0m[33m[0.599ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae' LIMIT 10
+
+2022/03/01 09:05:38 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:05:38 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.503ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:05:46 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:247
+[0m[33m[0.503ms] [34;1m[rows:1][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae' LIMIT 1
+
+2022/03/01 09:05:46 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:09:57 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[1.032ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:09:57 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.518ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:09:57 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:09:57 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.533ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:09:57 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:293
+[0m[33m[0.533ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae'
+
+2022/03/01 09:09:57 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.533ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:09:57 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.529ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:09:57 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.529ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:09:57 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:247
+[0m[33m[0.635ms] [34;1m[rows:1][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae' LIMIT 1
+
+2022/03/01 09:09:57 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:11:00 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.520ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:11:00 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.520ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:11:00 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:11:00 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:293
+[0m[33m[0.000ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae'
+
+2022/03/01 09:11:00 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:11:00 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:11:00 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[1.559ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:11:00 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:11:00 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:247
+[0m[33m[0.586ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae' LIMIT 10
+
+2022/03/01 09:11:00 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.503ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:11:00 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.503ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:11:48 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:247
+[0m[33m[0.613ms] [34;1m[rows:1][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae' LIMIT 1
+
+2022/03/01 09:11:48 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:12:33 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.523ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:12:33 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.523ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:12:33 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.523ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:12:33 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:293
+[0m[33m[0.523ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae'
+
+2022/03/01 09:12:33 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[1.043ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:12:33 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.519ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:12:33 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.519ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:12:33 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:12:33 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:247
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae' LIMIT 1
+
+2022/03/01 09:12:33 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:13:30 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.521ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:13:30 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.521ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:13:30 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.520ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:13:30 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:293
+[0m[33m[0.520ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae'
+
+2022/03/01 09:13:30 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.522ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:13:30 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.522ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:13:30 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[1.042ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:13:30 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:13:30 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:247
+[0m[33m[0.503ms] [34;1m[rows:1][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae' LIMIT 1
+
+2022/03/01 09:13:30 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:14:18 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:247
+[0m[33m[0.578ms] [34;1m[rows:1][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae' LIMIT 1 OFFSET 1
+
+2022/03/01 09:14:18 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:14:39 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:247
+[0m[33m[0.565ms] [34;1m[rows:1][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae' LIMIT 10 OFFSET 1
+
+2022/03/01 09:14:39 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.563ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:14:41 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:247
+[0m[33m[1.001ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae' LIMIT 10
+
+2022/03/01 09:14:41 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:14:41 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:47:47 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:235
+[0m[33m[1.018ms] [34;1m[rows:27][0m SELECT * FROM `categories`
+
+2022/03/01 09:47:51 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.515ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:47:51 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.521ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:47:51 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:47:51 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.516ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:47:52 [31;1mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:221 [35;1mrecord not found
+[0m[33m[0.626ms] [34;1m[rows:0][0m SELECT * FROM `products` WHERE id = 'editProduct' LIMIT 1
+
+2022/03/01 09:48:14 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[1.022ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:48:14 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:293
+[0m[33m[0.512ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae'
+
+2022/03/01 09:48:14 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:48:14 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.000ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:48:59 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[1.083ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:48:59 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[1.083ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:48:59 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.503ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:48:59 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.512ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:48:59 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.752ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:48:59 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:293
+[0m[33m[0.531ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae'
+
+2022/03/01 09:48:59 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.583ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:48:59 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.583ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:49:24 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.680ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:49:24 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.680ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:49:24 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 09:49:24 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:293
+[0m[33m[0.000ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae'
+
+2022/03/01 09:49:24 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.503ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 09:49:24 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.503ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 09:49:24 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[1.077ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 09:49:24 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 10:11:03 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.516ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 10:11:03 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[1.035ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 10:11:03 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.519ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 10:11:03 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 10:11:03 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[1.138ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 10:11:03 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:293
+[0m[33m[0.000ms] [34;1m[rows:2][0m SELECT * FROM `products` WHERE shop_id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae'
+
+2022/03/01 10:11:03 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.502ms] [34;1m[rows:1][0m SELECT * FROM `product_images` WHERE product_id = 'ca138707-0c10-4481-9377-b799c6084a95'
+
+2022/03/01 10:11:03 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:174
+[0m[33m[0.502ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/01 10:11:04 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.658ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 10:11:04 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 11:05:11 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[1.360ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 11:05:11 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.503ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 11:05:14 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.503ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 11:05:14 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 11:05:15 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.829ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 11:05:15 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 11:05:18 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[0.566ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 11:05:18 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.502ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/01 11:05:24 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:235
+[0m[33m[1.303ms] [34;1m[rows:27][0m SELECT * FROM `categories`
+
+2022/03/01 11:05:34 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:268
+[0m[33m[1.040ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/01 11:05:34 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:235
+[0m[33m[0.000ms] [34;1m[rows:27][0m SELECT * FROM `categories`
+
+2022/03/01 11:05:34 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:283
+[0m[33m[0.521ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1

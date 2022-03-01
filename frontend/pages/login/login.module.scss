@@ -4,18 +4,104 @@
 }
 
 .loginForm {
-  height: 50vh;
+  height: 80vh;
   background-image: url("../../public/images/login-bg.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.shadow {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color),
+    0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .flex {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexCenter a {
+  color: $primary-color;
 }
 
 .loginCont {
-  // background-color: red;
+  background-color: white;
   margin: 10vw;
+  width: 25vw;
+  border: 1px solid $light-grey;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 5vh 5vh 3vw 3vw;
+}
+
+.pt2 {
+  padding-top: 2vh;
+}
+
+.title span {
+  font-weight: bold;
+  font-size: 2vw;
+  color: $primary-color;
+}
+
+.loginCont input[type="text"] {
+  border-radius: 10px;
+  border: 1px solid $light-grey;
+  height: 5vh;
+}
+
+.loginCont input[type="password"] {
+  border-radius: 10px;
+  border: 1px solid $light-grey;
+  height: 5vh;
+}
+
+.loginCont input[type="submit"] {
+  background-color: $primary-color;
+  color: white;
+  border: 1px solid $primary-color;
+  border-radius: 10px;
+  width: 100%;
+  height: 40px;
+}
+
+.errorMsg {
+  color: red;
+}
+
+@media only screen and (max-width: 1020px) {
+  .loginCont {
+    width: 80vw;
+  }
+
+  .title span {
+    font-weight: bold;
+    font-size: 3vw;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .loginCont {
+    width: 80vw;
+  }
+
+  .title span {
+    font-weight: bold;
+    font-size: 5vw;
+  }
 }

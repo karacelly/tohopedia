@@ -1,0 +1,70 @@
+.body {
+  display: flex;
+}
+
+.container {
+  width: 100%;
+}
+
+.title {
+  padding: 2vh 0 0 3vw;
+}
+
+.card {
+  width: 100%;
+  padding: 3vw;
+
+  table {
+    width: 100%;
+
+    th,
+    td {
+      padding: 1.5vw;
+      text-align: center;
+    }
+
+    button {
+      background-color: $primary-color;
+      color: white;
+      border: 0;
+      padding: 1vh 1vw;
+      border-radius: 5px;
+    }
+  }
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.img {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border-radius: 10%;
+  overflow: hidden;
+  margin-right: 3vw;
+}
+
+.paginate {
+  margin: 1vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.act {
+  margin: 0 1vw;
+  padding: 0.5vw 1vw;
+  background-color: white;
+  color: $primary-color;
+  border: 1px solid $primary-color;
+  border-radius: 5px;
+}
+
+.act:hover {
+  background-color: $primary-color;
+  color: white;
+}

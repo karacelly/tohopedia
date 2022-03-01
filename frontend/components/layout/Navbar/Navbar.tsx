@@ -12,12 +12,16 @@ const Navbar = () => {
     <nav className={`${styles.shadow} ${styles.nav}`}>
       <div className={styles.navbar}>
         <div className={styles.navLogo}>
-          <Image
-            src={logo}
-            alt="Logo"
-            objectFit="contain"
-            layout="fill"
-          ></Image>
+          <Link href="/">
+            <a>
+              <Image
+                src={logo}
+                alt="Logo"
+                objectFit="contain"
+                layout="fill"
+              ></Image>
+            </a>
+          </Link>
         </div>
         <div className={styles.category}>
           <span>Category</span>
@@ -36,16 +40,16 @@ const Navbar = () => {
           </span>
         </div>
         <div className={styles.user}>
-          <Button>
-            <Link href="/login" passHref>
-            <a>Login</a>
-            </Link>
-          </Button>
-          <Button>
-            <Link href="/register" passHref>
-              <a>Register</a>
-            </Link>
-          </Button>
+          <Link href="/login" passHref>
+            <a>
+              <Button>Login</Button>
+            </a>
+          </Link>
+          <Link href="/register" passHref>
+            <a>
+              <Button>Register</Button>
+            </a>
+          </Link>
         </div>
       </div>
     </nav>
