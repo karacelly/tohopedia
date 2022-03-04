@@ -11,6 +11,7 @@ type AuthOps struct {
 	Register interface{} `json:"register"`
 }
 
+
 type NewCart struct {
 	ProductID string  `json:"productId"`
 	Quantity  int     `json:"quantity"`

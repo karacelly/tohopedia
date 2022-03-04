@@ -36,18 +36,6 @@ func (r *cartResolver) User(ctx context.Context, obj *model.Cart) (*model.User, 
 	panic(fmt.Errorf("not implemented"))
 }
 
-func (r *cartResolver) Checked(ctx context.Context, obj *model.Cart) (bool, error) {
-	panic(fmt.Errorf("not implemented"))
-}
-
-func (r *cartResolver) CreatedAt(ctx context.Context, obj *model.Cart) (*time.Time, error) {
-	panic(fmt.Errorf("not implemented"))
-}
-
-func (r *cartResolver) Note(ctx context.Context, obj *model.Cart) (*string, error) {
-	panic(fmt.Errorf("not implemented"))
-}
-
 func (r *categoryResolver) Products(ctx context.Context, obj *model.Category) ([]*model.Product, error) {
 	panic(fmt.Errorf("not implemented"))
 }
@@ -358,6 +346,10 @@ func (r *mutationResolver) AddProduct(ctx context.Context, input model.NewProduc
 	return product, err
 }
 
+func (r *mutationResolver) AddToCart(ctx context.Context, input model.NewCart) (*model.Cart, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+
 func (r *productResolver) Images(ctx context.Context, obj *model.Product) ([]*model.ProductImage, error) {
 	db := config.GetDB()
 	var images []*model.ProductImage
@@ -571,6 +563,15 @@ type userResolver struct{ *Resolver }
 //  - When renaming or deleting a resolver the old code will be put in here. You can safely delete
 //    it when you're done.
 //  - You have helper methods in this file. Move them out to keep these resolver files clean.
+func (r *cartResolver) Checked(ctx context.Context, obj *model.Cart) (bool, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+func (r *cartResolver) Note(ctx context.Context, obj *model.Cart) (*string, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+func (r *cartResolver) CreatedAt(ctx context.Context, obj *model.Cart) (*time.Time, error) {
+	panic(fmt.Errorf("not implemented"))
+}
 func (r *addressResolver) IsMain(ctx context.Context, obj *model.Address) (bool, error) {
 	panic(fmt.Errorf("not implemented"))
 }

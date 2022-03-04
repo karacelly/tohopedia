@@ -161,7 +161,6 @@ type Cart {
   user: User! @goField(forceResolver: true)
   quantity: Int!
   checked: Boolean!
-  createdAt: Time!
   note: String
 }
 
@@ -209,4 +208,5 @@ type Mutation {
   updateAddress(input: UpdateAddress!, id: String!): Address! @auth
   setMainAddress(id: String!): Address! @auth
   addProduct(input: NewProduct!): Product! @auth
+  addToCart(input: NewCart!): Cart! @auth
 }

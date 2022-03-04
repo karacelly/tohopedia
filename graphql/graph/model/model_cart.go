@@ -7,4 +7,6 @@ type Cart struct {
 	UserId    string   `json:"userId" gorm:"size:191"`
 	User      *User    `json:"user"`
 	Quantity  int      `json:"quantity"`
+	Checked   bool     `json:"checked"`
+	Note      *string  `json:"note"`
 }
