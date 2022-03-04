@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import React from "react";
 import LoggedNavbar from "../../../components/layout/Navbar/LoggedNavbar";
 import noPhoto from "../../../public/images/productnophoto.png";
@@ -8,6 +8,7 @@ import Footer from "../../../components/layout/Footer/Footer";
 import Card from "../../../components/common/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import Router from "next/router";
 
 const Cart = () => {
   const getCartsQuery = gql`
@@ -32,6 +33,26 @@ const Cart = () => {
   `;
 
   const { loading, error, data } = useQuery(getCartsQuery);
+
+  const updateCartQtyQuery = gql`
+    mutation updateCartQty($id: String!, $qty: Int!) {
+      UpdateCartQty(id: $id, qty: $qty) {
+        id
+      }
+    }
+  `;
+
+  const [UpdateCartQty] = useMutation(updateCartQtyQuery);
+
+  const deleteCartQuery = gql`
+    mutation DeleteCart($id: String!) {
+      UpdateCartQty(id: $id) {
+        id
+      }
+    }
+  `;
+
+  const [DeleteCart] = useMutation(deleteCartQuery);
 
   console.log(data);
   return (
@@ -84,7 +105,20 @@ const Cart = () => {
                     <div className={s.btn}>
                       <div className={s.left}>
                         <p>Move to Wishlist</p>
-                        <p>
+                        <p
+                          onClick={async () => {
+                            try {
+                              await DeleteCart({
+                                variables: {
+                                  id: c?.id,
+                                },
+                              });
+                            } catch (error) {
+                              console.log(error);
+                            }
+                            Router.reload();
+                          }}
+                        >
                           <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
                         </p>
                       </div>
@@ -103,6 +137,31 @@ const Cart = () => {
           ) : (
             <div>Keranjangmu kosong!</div>
           )}
+        </div>
+        <div className={s.containerRight}>
+          <Card>
+            <div className={s.promo}>
+              <h5>Makin hemat pakai promo</h5>
+            </div>
+            <div className={s.summary}>
+              <h4>Ringkasan belanja</h4>
+              <div className={s.summaryUp}>
+                <span>Total Harga (2 barang)</span>
+                <span>Rp300.000</span>
+              </div>
+              <div className={s.summaryDown}>
+                <span>Total Diskon Barang</span>
+                <span>-Rp15.000</span>
+              </div>
+              <div className={s.total}>
+                <h4>Total Harga</h4>
+                <h4>Rp285.000</h4>
+              </div>
+              <div className={s.buy}>
+                <button>Beli</button>
+              </div>
+            </div>
+          </Card>
         </div>
       </div>
       <Footer></Footer>

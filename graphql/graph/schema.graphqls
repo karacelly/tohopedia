@@ -210,4 +210,6 @@ type Mutation {
   setMainAddress(id: String!): Address! @auth
   addProduct(input: NewProduct!): Product! @auth
   addToCart(input: NewCart!): Cart! @auth
+  updateCartQty(id: String!, qty: Int!): Cart! @auth
+  deleteCart(id: String!): Cart! @auth
 }

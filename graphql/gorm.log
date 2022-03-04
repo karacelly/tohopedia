@@ -1,0 +1,171 @@
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.509ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/04 23:46:24 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:11
+[0m[33m[0.508ms] [34;1m[rows:-][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = 'tohopedia' AND table_name = 'users' AND table_type = 'BASE TABLE'
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.513ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:205
+[0m[33m[3.058ms] [34;1m[rows:-][0m SELECT column_name, is_nullable, data_type, character_maximum_length, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'tohopedia' AND table_name = 'users' ORDER BY ORDINAL_POSITION
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/04 23:46:24 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:11
+[0m[33m[0.513ms] [34;1m[rows:-][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = 'tohopedia' AND table_name = 'categories' AND table_type = 'BASE TABLE'
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.515ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:205
+[0m[33m[2.601ms] [34;1m[rows:-][0m SELECT column_name, is_nullable, data_type, character_maximum_length, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'tohopedia' AND table_name = 'categories' ORDER BY ORDINAL_POSITION
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.511ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/04 23:46:24 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:11
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = 'tohopedia' AND table_name = 'shops' AND table_type = 'BASE TABLE'
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.510ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:205
+[0m[33m[2.555ms] [34;1m[rows:-][0m SELECT column_name, is_nullable, data_type, character_maximum_length, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'tohopedia' AND table_name = 'shops' ORDER BY ORDINAL_POSITION
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.509ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/04 23:46:24 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:11
+[0m[33m[0.513ms] [34;1m[rows:-][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE constraint_schema = 'tohopedia' AND table_name = 'shops' AND constraint_name = 'fk_users_shop'
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/04 23:46:24 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:11
+[0m[33m[0.508ms] [34;1m[rows:-][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = 'tohopedia' AND table_name = 'products' AND table_type = 'BASE TABLE'
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:205
+[0m[33m[2.415ms] [34;1m[rows:-][0m SELECT column_name, is_nullable, data_type, character_maximum_length, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'tohopedia' AND table_name = 'products' ORDER BY ORDINAL_POSITION
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/04 23:46:24 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:11
+[0m[33m[1.200ms] [34;1m[rows:-][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE constraint_schema = 'tohopedia' AND table_name = 'products' AND constraint_name = 'fk_categories_products'
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/04 23:46:24 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:11
+[0m[33m[1.012ms] [34;1m[rows:-][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE constraint_schema = 'tohopedia' AND table_name = 'products' AND constraint_name = 'fk_shops_products'
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/04 23:46:24 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:11
+[0m[33m[0.588ms] [34;1m[rows:-][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = 'tohopedia' AND table_name = 'carts' AND table_type = 'BASE TABLE'
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:205
+[0m[33m[9.868ms] [34;1m[rows:-][0m SELECT column_name, is_nullable, data_type, character_maximum_length, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'tohopedia' AND table_name = 'carts' ORDER BY ORDINAL_POSITION
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/04 23:46:24 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:11
+[0m[33m[1.000ms] [34;1m[rows:-][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE constraint_schema = 'tohopedia' AND table_name = 'carts' AND constraint_name = 'fk_users_carts'
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:234
+[0m[33m[0.000ms] [34;1m[rows:-][0m SELECT DATABASE()
+
+2022/03/04 23:46:24 [32mC:/Users/arace/go/pkg/mod/gorm.io/driver/mysql@v1.2.3/migrator.go:237
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'tohopedia%' ORDER BY SCHEMA_NAME='tohopedia' DESC limit 1
+
+2022/03/04 23:46:24 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/migration/migration.go:11
+[0m[33m[1.010ms] [34;1m[rows:-][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE constraint_schema = 'tohopedia' AND table_name = 'carts' AND constraint_name = 'fk_carts_product'
+
+2022/03/04 23:47:49 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:559
+[0m[33m[0.999ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `shops`.`id` LIMIT 1
+
+2022/03/04 23:47:49 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:574
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `users` WHERE id = '6e756974-797d-4bd2-bd7e-fb6960467894' ORDER BY `users`.`id` LIMIT 1
+
+2022/03/04 23:47:49 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:516
+[0m[33m[0.999ms] [34;1m[rows:3][0m SELECT * FROM `carts` WHERE user_id = '6e756974-797d-4bd2-bd7e-fb6960467894'
+
+2022/03/04 23:47:49 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:34
+[0m[33m[1.000ms] [34;1m[rows:1][0m SELECT * FROM `products` WHERE id = '01f7d4f9-6c88-4a69-95f8-666c3bdc613b'
+
+2022/03/04 23:47:49 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:34
+[0m[33m[1.000ms] [34;1m[rows:1][0m SELECT * FROM `products` WHERE id = '10318d36-09a1-4989-9f2e-d2e3691a5c7b'
+
+2022/03/04 23:47:49 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:433
+[0m[33m[1.001ms] [34;1m[rows:0][0m SELECT * FROM `product_images` WHERE product_id = '01f7d4f9-6c88-4a69-95f8-666c3bdc613b'
+
+2022/03/04 23:47:49 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:433
+[0m[33m[1.001ms] [34;1m[rows:0][0m SELECT * FROM `product_images` WHERE product_id = '10318d36-09a1-4989-9f2e-d2e3691a5c7b'
+
+2022/03/04 23:47:49 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:457
+[0m[33m[1.001ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE id = '9fc09ce9-b662-47cd-8ec5-c126de917882'
+
+2022/03/04 23:47:49 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:457
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE id = 'fa4b98be-be9a-4a34-af4f-2d20dc4fadae'
+
+2022/03/04 23:47:49 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:34
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `products` WHERE id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'
+
+2022/03/04 23:47:49 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:457
+[0m[33m[0.000ms] [34;1m[rows:1][0m SELECT * FROM `shops` WHERE id = '9fc09ce9-b662-47cd-8ec5-c126de917882'
+
+2022/03/04 23:47:49 [32mD:/BINUS/Aslab/TPA Web/tohopedia/graphql/graph/schema.resolvers.go:433
+[0m[33m[0.999ms] [34;1m[rows:3][0m SELECT * FROM `product_images` WHERE product_id = 'b39501bc-57fd-4ad7-b339-8de5705e8a39'

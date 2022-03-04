@@ -391,6 +391,42 @@ func (r *mutationResolver) AddToCart(ctx context.Context, input model.NewCart) (
 	return cart, db.Create(cart).Error
 }
 
+func (r *mutationResolver) UpdateCartQty(ctx context.Context, id string, qty int) (*model.Cart, error) {
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	cart := new(model.Cart)
+	if err := db.Where("id = ?", id).First(&cart).Error; err != nil {
+		return nil, err
+	}
+
+	cart.Quantity += qty;
+
+	return cart, db.Save(cart).Error
+}
+
+func (r *mutationResolver) DeleteCart(ctx context.Context, id string) (*model.Cart, error) {
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	cart := new(model.Cart)
+	if err := db.Where("id = ?", id).First(&cart).Error; err != nil {
+		return nil, err
+	}
+
+	return cart, db.Delete(cart).Error
+}
+
 func (r *productResolver) Images(ctx context.Context, obj *model.Product) ([]*model.ProductImage, error) {
 	db := config.GetDB()
 	var images []*model.ProductImage

@@ -5,7 +5,8 @@
 
 .container {
   display: flex;
-  margin: 1vh 10vw;
+  margin: 3vh 10vw;
+  justify-content: space-around;
 }
 
 .img {
@@ -16,7 +17,11 @@
 }
 
 .containerLeft {
-  width: 70%;
+  width: 65%;
+}
+
+.containerRight {
+  width: 30%;
 }
 
 .product {
@@ -106,5 +111,42 @@
     text-decoration: line-through;
     font-size: 1vw;
     margin-right: 0.5vw;
+  }
+}
+
+.promo {
+  h5 {
+    border: 1px solid rgb(179, 179, 179);
+    padding: 1.5vh 1vw;
+    border-radius: 5px;
+  }
+}
+
+.summaryUp,
+.summaryDown,
+.total {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  h4 {
+    font-size: 1.25vw;
+  }
+  span {
+    font-size: 1.1vw;
+  }
+}
+
+.buy {
+  display: flex;
+
+  button {
+    width: 100%;
+    background-color: $primary-color;
+    border: 0;
+    border-radius: 5px;
+    height: 4vh;
+    color: white;
+    font-weight: bold;
   }
 }
