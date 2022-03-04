@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import Footer from "../../../components/layout/Footer/Footer";
 import LoggedNavbar from "../../../components/layout/Navbar/LoggedNavbar";
 import ShopSidebar from "../../../components/layout/Sidebar/ShopSidebar";
 import s from "./allProduct.module.scss";
@@ -78,7 +79,9 @@ const AllProducts = () => {
     <div>
       <LoggedNavbar></LoggedNavbar>
       <div className={s.body}>
-        <ShopSidebar></ShopSidebar>
+        <div className={s.hide}>
+          <ShopSidebar></ShopSidebar>
+        </div>
         <div className={s.container}>
           <div className={s.title}>
             <h3>All Products</h3>
@@ -147,6 +150,7 @@ const AllProducts = () => {
           </div>
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 };

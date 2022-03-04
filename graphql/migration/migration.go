@@ -10,5 +10,5 @@ func MigrateTable() {
 
 	db.AutoMigrate(&model.Product{})
 	db.AutoMigrate(&model.ProductImage{})
-	db.AutoMigrate(&model.ProductMetadata{})
+	db.AutoMigrate(&model.Address{})
 }

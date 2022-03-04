@@ -13,6 +13,7 @@ import { array, object, string } from "yup";
 import { MultipleFileUploadField } from "../../upload/MultipleFileUploadField";
 import ErrorDiv from "../../../components/common/ErrorDiv";
 import Category from "../../../models/Category";
+import Footer from "../../../components/layout/Footer/Footer";
 
 const AddProduct: NextPage = () => {
   useEffect(() => {
@@ -117,6 +118,7 @@ const AddProduct: NextPage = () => {
           } catch (error) {
             console.log(error);
           }
+          Router.reload();
 
           return new Promise((res) => setTimeout(res, 2000));
         }}
@@ -261,6 +263,8 @@ const AddProduct: NextPage = () => {
           </div>
         )}
       </Formik>
+
+      <Footer></Footer>
     </>
   );
 };

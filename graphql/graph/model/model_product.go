@@ -39,3 +39,15 @@ type ProductMetadata struct {
 	ProductID string   `json:"productId" gorm:"size:191"`
 	Product   *Product `json:"product"`
 }
+
+type NewProduct struct {
+	Name        string   `json:"name"`
+	Description string   `json:"description"`
+	Images      []string `json:"images"`
+	Price       int      `json:"price"`
+	Stock       int      `json:"stock"`
+	Discount    int      `json:"discount"`
+	CategoryID  string   `json:"categoryId"`
+	Label       string   `json:"label"`
+	Value       string   `json:"value"`
+}

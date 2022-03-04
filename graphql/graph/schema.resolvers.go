@@ -36,6 +36,18 @@ func (r *cartResolver) User(ctx context.Context, obj *model.Cart) (*model.User, 
 	panic(fmt.Errorf("not implemented"))
 }
 
+func (r *cartResolver) Checked(ctx context.Context, obj *model.Cart) (bool, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+
+func (r *cartResolver) CreatedAt(ctx context.Context, obj *model.Cart) (*time.Time, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+
+func (r *cartResolver) Note(ctx context.Context, obj *model.Cart) (*string, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+
 func (r *categoryResolver) Products(ctx context.Context, obj *model.Category) ([]*model.Product, error) {
 	panic(fmt.Errorf("not implemented"))
 }
@@ -86,6 +98,59 @@ func (r *mutationResolver) OpenShop(ctx context.Context, input model.NewShop) (*
 	return shop, err
 }
 
+func (r *mutationResolver) UpdateShop(ctx context.Context, input model.UpdateShop) (*model.Shop, error) {
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	shop := new(model.Shop)
+	userId := ctx.Value("auth").(*service.JwtCustomClaim).ID
+
+	if err := db.Where("user_id = ?", userId).First(&shop).Error; err != nil {
+		return nil, err
+	}
+
+	shop.Name = input.Name
+	shop.Slug = input.Slug
+	shop.Slogan = input.Slogan
+	shop.Description = input.Description
+	shop.IsOpen = input.IsOpen
+	shop.OpenTime = input.OpenTime
+	shop.CloseTime = input.CloseTime
+
+	return shop, db.Save(shop).Error
+}
+
+func (r *mutationResolver) UpdateUser(ctx context.Context, input model.UpdateUser) (*model.User, error) {
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	user := new(model.User)
+	userId := ctx.Value("auth").(*service.JwtCustomClaim).ID
+
+	if err := db.Where("id = ?", userId).First(&user).Error; err != nil {
+		return nil, err
+	}
+
+	user.Name = input.Name
+	user.Email = input.Email
+	user.Dob = input.Dob
+	user.Gender = input.Gender
+	user.Phone = input.Phone
+	user.Image = input.Image
+
+	return user, db.Save(user).Error
+}
+
 func (r *mutationResolver) CreateCategory(ctx context.Context, name string) (*model.Category, error) {
 	db := config.GetDB()
 
@@ -97,6 +162,131 @@ func (r *mutationResolver) CreateCategory(ctx context.Context, name string) (*mo
 	err := db.Create(model).Error
 
 	return model, err
+}
+
+func (r *mutationResolver) AddAddress(ctx context.Context, input model.NewAddress) (*model.Address, error) {
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	userId := ctx.Value("auth").(*service.JwtCustomClaim).ID
+
+	if input.IsMain == true {
+		var addresses []*model.Address
+		if err := db.Where("user_id = ?", userId).Find(&addresses).Error; err != nil {
+			return nil, err
+		}
+
+		if len(addresses) > 0 {
+			for i := 0; i < len(addresses); i++ {
+				addresses[i].IsMain = false
+			}
+
+			if err := db.Save(addresses).Error; err != nil {
+				return nil, err
+			}
+		}
+	}
+
+	model := &model.Address{
+		ID:         uuid.NewString(),
+		Label:      input.Label,
+		Receiver:   input.Receiver,
+		Phone:      input.Phone,
+		City:       input.City,
+		PostalCode: input.PostalCode,
+		Address:    input.Address,
+		IsMain:     input.IsMain,
+		IsValid:    true,
+		UserId:     userId,
+	}
+
+	err := db.Create(model).Error
+
+	return model, err
+}
+
+func (r *mutationResolver) DeleteAddress(ctx context.Context, id string) (*model.Address, error) {
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	var address *model.Address
+	if err := db.Where("id = ?", id).Find(&address).Error; err != nil {
+		return nil, err
+	}
+
+	address.IsValid = false
+
+	return address, db.Save(address).Error
+}
+
+func (r *mutationResolver) UpdateAddress(ctx context.Context, input model.UpdateAddress, id string) (*model.Address, error) {
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	var address *model.Address
+	if err := db.Where("id = ?", id).Find(&address).Error; err != nil {
+		return nil, err
+	}
+
+	address.Label = input.Label
+	address.Receiver = input.Receiver
+	address.Phone = input.Phone
+	address.Address = input.Address
+	address.City = input.City
+	address.PostalCode = input.PostalCode
+
+	return address, db.Save(address).Error
+}
+
+func (r *mutationResolver) SetMainAddress(ctx context.Context, id string) (*model.Address, error) {
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	userId := ctx.Value("auth").(*service.JwtCustomClaim).ID
+
+	var addresses []*model.Address
+	if err := db.Where("user_id = ?", userId).Find(&addresses).Error; err != nil {
+		return nil, err
+	}
+
+	if len(addresses) > 0 {
+		for i := 0; i < len(addresses); i++ {
+			addresses[i].IsMain = false
+		}
+
+		if err := db.Save(addresses).Error; err != nil {
+			return nil, err
+		}
+	}
+
+	var address *model.Address
+	if err := db.Where("id = ?", id).Find(&address).Error; err != nil {
+		return nil, err
+	}
+
+	address.IsMain = true
+
+	return address, db.Save(address).Error
 }
 
 func (r *mutationResolver) AddProduct(ctx context.Context, input model.NewProduct) (*model.Product, error) {
@@ -235,6 +425,25 @@ func (r *queryResolver) Categories(ctx context.Context) ([]*model.Category, erro
 	return models, db.Find(&models).Error
 }
 
+func (r *queryResolver) Addresses(ctx context.Context) ([]*model.Address, error) {
+	db := config.GetDB()
+
+	var address []*model.Address
+	userId := ctx.Value("auth").(*service.JwtCustomClaim).ID
+
+	if err := db.Where("user_id = ? and is_valid = ?", userId, true).Find(&address).Error; err != nil {
+		return nil, err
+	}
+
+	return address, nil
+}
+
+func (r *queryResolver) AllProducts(ctx context.Context) ([]*model.Product, error) {
+	db := config.GetDB()
+	var models []*model.Product
+	return models, db.Find(&models).Error
+}
+
 func (r *queryResolver) Products(ctx context.Context, limit int, offset int) ([]*model.Product, error) {
 	db := config.GetDB()
 	var models []*model.Product
@@ -362,6 +571,9 @@ type userResolver struct{ *Resolver }
 //  - When renaming or deleting a resolver the old code will be put in here. You can safely delete
 //    it when you're done.
 //  - You have helper methods in this file. Move them out to keep these resolver files clean.
+func (r *addressResolver) IsMain(ctx context.Context, obj *model.Address) (bool, error) {
+	panic(fmt.Errorf("not implemented"))
+}
 func (r *productResolver) Discount(ctx context.Context, obj *model.Product) (int, error) {
 	panic(fmt.Errorf("not implemented"))
 }

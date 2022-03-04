@@ -35,6 +35,15 @@ input NewUser {
   password: String!
 }
 
+input UpdateUser {
+  name: String!
+  email: String!
+  dob: String!
+  gender: String!
+  phone: String!
+  image: String!
+}
+
 input NewShop {
   name: String!
   slug: String!
@@ -42,6 +51,17 @@ input NewShop {
   city: String!
   postalCode: String!
   address: String!
+}
+
+input UpdateShop {
+  image: String!
+  name: String!
+  slug: String!
+  slogan: String!
+  isOpen: Boolean!
+  description: String!
+  openTime: Time!
+  closeTime: Time!
 }
 
 type Shop {
@@ -111,7 +131,28 @@ type Address {
   city: String!
   postalCode: String!
   address: String!
+  isMain: Boolean!
+  isValid: Boolean!
   user: User! @goField(forceResolver: true)
+}
+
+input NewAddress {
+  label: String!
+  receiver: String!
+  phone: String!
+  city: String!
+  postalCode: String!
+  address: String!
+  isMain: Boolean!
+}
+
+input UpdateAddress {
+  label: String!
+  receiver: String!
+  phone: String!
+  city: String!
+  postalCode: String!
+  address: String!
 }
 
 type Cart {
@@ -119,6 +160,15 @@ type Cart {
   product: Product! @goField(forceResolver: true)
   user: User! @goField(forceResolver: true)
   quantity: Int!
+  checked: Boolean!
+  createdAt: Time!
+  note: String
+}
+
+input NewCart {
+  productId: String!
+  quantity: Int!
+  note: String
 }
 
 type ProductImage {
@@ -137,6 +187,8 @@ type Query {
   product(id: ID!): Product! @goField(forceResolver: true)
   users: [User!]! @goField(forceResolver: true)
   categories: [Category!]! @goField(forceResolver: true)
+  addresses: [Address!]! @goField(forceResolver: true)
+  allProducts: [Product!]! @goField(forceResolver: true)
   products(limit: Int!, offset: Int!): [Product!]! @goField(forceResolver: true)
   productsPaginate(limit: Int!, offset: Int!, shopID: String!): [Product!]!
     @goField(forceResolver: true)
@@ -149,6 +201,12 @@ type Query {
 type Mutation {
   auth: AuthOps! @goField(forceResolver: true)
   openShop(input: NewShop!): Shop! @auth
+  updateShop(input: UpdateShop!): Shop! @auth
+  updateUser(input: UpdateUser!): User! @auth
   createCategory(name: String!): Category!
+  addAddress(input: NewAddress!): Address! @auth
+  deleteAddress(id: String!): Address! @auth
+  updateAddress(input: UpdateAddress!, id: String!): Address! @auth
+  setMainAddress(id: String!): Address! @auth
   addProduct(input: NewProduct!): Product! @auth
 }

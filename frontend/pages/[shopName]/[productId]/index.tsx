@@ -4,7 +4,9 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import LoggedNavbar from "../../../components/layout/Navbar/LoggedNavbar";
 import Image from "next/image";
-import defaultShop from "../../../public/images/shopnophoto.png";
+
+import noPhoto from "../../../public/images/productnophoto.png";
+import defaultShop from "../../../public/images/productnophoto.png";
 
 import s from "./detail.module.scss";
 import Hide from "../../../components/common/Hide";
@@ -72,27 +74,32 @@ const ProductDetail = () => {
                 );
               })
             ) : (
-              <div>No photo</div>
+              <div>
+                <Image
+                  src={noPhoto}
+                  alt="img"
+                  objectFit="cover"
+                  layout="fill"
+                ></Image>
+              </div>
             )}
           </div>
-          {data?.product?.images?.length > 0 ? (
-            data?.product?.images?.map((i: any, idx: any) => {
-              return (
-                <Link key={idx} href={`#${idx}`} scroll={false}>
-                  <a>
-                    <Image
-                      src={i.image}
-                      alt="img"
-                      objectFit="cover"
-                      layout="fill"
-                    ></Image>
-                  </a>
-                </Link>
-              );
-            })
-          ) : (
-            <div>No photo</div>
-          )}
+          {data?.product?.images?.length > 0
+            ? data?.product?.images?.map((i: any, idx: any) => {
+                return (
+                  <Link key={idx} href={`#${idx}`} scroll={false}>
+                    <a>
+                      <Image
+                        src={i.image}
+                        alt="img"
+                        objectFit="cover"
+                        layout="fill"
+                      ></Image>
+                    </a>
+                  </Link>
+                );
+              })
+            : null}
         </div>
         <div className={s.info}>
           <h3>{data?.product?.name}</h3>

@@ -12,16 +12,38 @@
 }
 
 .navbar {
-  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  height: 5rem;
+}
+
+.up,
+.down {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.icon {
+  display: flex;
+  flex-direction: row;
+}
+
+.up {
+  width: 65%;
+}
+
+.down {
+  width: 35%;
 }
 
 .navLogo {
-  height: 50%;
+  height: 10vw;
   width: 10vw;
   position: relative;
 }
@@ -83,14 +105,112 @@
 
 .photo {
   position: relative;
-  width: 35px;
-  height: 35px;
+  width: 3vw;
+  height: 3vw;
   // border-radius: 40px solid white;
   border-radius: 50%;
   margin-right: 1vw;
   overflow: hidden;
 }
 
+.logged {
+  padding: 0.8vh 0.8vw;
+}
+
 .logged:hover {
-  background-color: gray;
+  background-color: rgb(197, 197, 197);
+  border-radius: 5px;
+}
+
+.circle {
+  position: relative;
+  width: 4vw;
+  height: 4vw;
+  // border-radius: 40px solid white;
+  border-radius: 50%;
+  margin-right: 1vw;
+  overflow: hidden;
+}
+
+#userHover {
+  background-color: white;
+  position: absolute;
+  top: 15vh;
+  right: 4vw;
+  z-index: 1;
+  width: 40vw;
+
+  p {
+    font-size: 2vh;
+  }
+}
+
+#shopHover {
+  background-color: white;
+  position: absolute;
+  top: 15vh;
+  right: 4vw;
+  z-index: 1;
+  width: 20vw;
+
+  p {
+    font-size: 2vh;
+  }
+}
+
+.prof {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.flexLeft,
+.flexRight {
+  width: 50%;
+  padding: 1vh 1vw;
+}
+
+.flexRight {
+  display: flex;
+  flex-direction: column;
+}
+
+.saldo {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 960px) {
+  .navbar {
+    flex-direction: column;
+    padding-bottom: 2vh;
+  }
+
+  .up,
+  .down {
+    width: 100%;
+  }
+
+  .user {
+    width: 40%;
+  }
+
+  #userHover {
+    top: 10vh;
+    width: 70vw;
+    right: 10vw;
+
+    h3 {
+      font-size: 3vw;
+    }
+
+    p {
+      font-size: 2vw;
+    }
+  }
 }

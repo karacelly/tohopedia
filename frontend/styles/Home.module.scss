@@ -84,8 +84,8 @@
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: $primary-color;
+  border-color: $secondary-color;
 }
 
 .card h2 {
@@ -102,6 +102,36 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
+}
+
+.img {
+  position: relative;
+  width: 10vw;
+  height: 10vw;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 3vw;
+}
+
+.h64 {
+  height: 16rem /* 256px */;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+.animatePulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.bgSlate700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
 }
 
 @media (max-width: 600px) {

@@ -4,6 +4,11 @@
   align-items: center;
   height: 50vh;
   width: 100%;
+
+  a,
+  p {
+    font-size: small;
+  }
 }
 
 .footerLeft {
@@ -24,4 +29,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  .left {
+    width: 52%;
+  }
+
+  .right {
+    width: 38%;
+  }
 }
