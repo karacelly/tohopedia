@@ -23,3 +23,23 @@ type Shop struct {
 	PostalCode      string     `json:"postalCode"`
 	Address         string     `json:"address"`
 }
+
+type NewShop struct {
+	Name       string `json:"name"`
+	Slug       string `json:"slug"`
+	Phone      string `json:"phone"`
+	City       string `json:"city"`
+	PostalCode string `json:"postalCode"`
+	Address    string `json:"address"`
+}
+
+type UpdateShop struct {
+	Image       string    `json:"image"`
+	Name        string    `json:"name"`
+	Slug        string    `json:"slug"`
+	Slogan      string    `json:"slogan"`
+	IsOpen      bool      `json:"isOpen"`
+	Description string    `json:"description"`
+	OpenTime    time.Time `json:"openTime"`
+	CloseTime   time.Time `json:"closeTime"`
+}

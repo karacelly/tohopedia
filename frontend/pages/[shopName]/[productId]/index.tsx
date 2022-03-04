@@ -1,6 +1,6 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import LoggedNavbar from "../../../components/layout/Navbar/LoggedNavbar";
 import Image from "next/image";
@@ -18,6 +18,7 @@ const ProductDetail = () => {
   const [stock, setStock] = useState(1);
   const [price, setPrice] = useState(1);
   const [discount, setDiscount] = useState(0);
+  const [note, setNote] = useState("");
 
   const productQuery = gql`
     query product($id: ID!) {
@@ -45,6 +46,18 @@ const ProductDetail = () => {
   const { loading, error, data } = useQuery(productQuery, {
     variables: { id: productId },
   });
+
+  const addToCartQuery = gql`
+    mutation addToCart($productId: String!, $quantity: Int!, $note: String!) {
+      addToCart(
+        input: { productId: $productId, quantity: $quantity, note: $note }
+      ) {
+        id
+      }
+    }
+  `;
+
+  const [addToCart] = useMutation(addToCartQuery);
 
   useEffect(() => {
     setDiscount(data?.product?.discount);
@@ -147,7 +160,11 @@ const ProductDetail = () => {
               cancel="Batalkan Catatan"
               className={s.green}
             >
-              <input type="text" placeholder="Contoh: Warna Putih, Size M" />
+              <input
+                type="text"
+                placeholder="Contoh: Warna Putih, Size M"
+                onChange={(e) => setNote(e.target.value)}
+              />
             </Hide>
             <p className={s.price}>{data?.product?.price}</p>
             <div className={s.subtotal}>
@@ -156,7 +173,30 @@ const ProductDetail = () => {
             </div>
             <div className={s.btn}>
               <button id={s.beli}>Beli Langsung</button>
-              <button id={s.cart}>+ Keranjang</button>
+              <button
+                id={s.cart}
+                onClick={async (e) => {
+                  e.preventDefault();
+
+                  try {
+                    console.log(productId);
+                    console.log(stock);
+                    console.log(note);
+                    await addToCart({
+                      variables: {
+                        productId: productId,
+                        quantity: stock,
+                        note: note,
+                      },
+                    });
+                  } catch (error) {
+                    console.log(error);
+                  }
+                  // Router.reload();
+                }}
+              >
+                + Keranjang
+              </button>
             </div>
           </form>
           <div className={s.action}>

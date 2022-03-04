@@ -84,9 +84,13 @@ const LoggedNavbar = () => {
         </div>
         <div className={styles.down}>
           <div className={styles.cart}>
-            <span>
-              <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
-            </span>
+            <Link href="/user/cart" passHref>
+              <a>
+                <span>
+                  <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
+                </span>
+              </a>
+            </Link>
           </div>
           <div className={styles.cart}>
             <span>

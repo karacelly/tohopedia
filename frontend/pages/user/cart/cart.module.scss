@@ -1,0 +1,110 @@
+.body {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  margin: 1vh 10vw;
+}
+
+.img {
+  position: relative;
+  width: 7vw;
+  height: 7vw;
+  margin-right: 2vw;
+}
+
+.containerLeft {
+  width: 70%;
+}
+
+.product {
+  display: flex;
+}
+
+.cart {
+  width: 100%;
+  padding: 0.25rem 2rem;
+}
+
+.action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  width: 65%;
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    margin: 0;
+    color: rgb(97, 97, 97);
+  }
+}
+
+.left {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.right {
+  width: 30%;
+  display: flex;
+  align-items: center;
+
+  span {
+    color: rgb(97, 97, 97);
+    font-weight: bold;
+    padding: 4px 5px;
+    text-align: center;
+    border: 1px solid rgb(97, 97, 97);
+    border-radius: 100%;
+  }
+
+  span:hover {
+    color: $primary-color;
+    border: 1px solid $primary-color;
+  }
+
+  input {
+    width: 3.5vw;
+    height: 4vh;
+    border: 0;
+    border-bottom: 1px solid rgb(97, 97, 97);
+    text-align: center;
+  }
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+
+  p {
+    margin: 0;
+  }
+}
+
+.dets {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  span {
+    background-color: red;
+    color: white;
+    font-size: 1vw;
+    padding: 0.25vh 0.25vw;
+    margin-right: 1vw;
+  }
+
+  p {
+    text-decoration: line-through;
+    font-size: 1vw;
+    margin-right: 0.5vw;
+  }
+}

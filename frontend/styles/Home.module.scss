@@ -78,7 +78,8 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  height: 24vw;
+  width: 16vw;
 }
 
 .card:hover,
@@ -114,10 +115,13 @@
   display: flex;
   flex-wrap: wrap;
   margin: 0 3vw;
+  justify-content: center;
 }
 
 .h64 {
   height: 16rem /* 256px */;
+  width: 12rem;
+  margin: 2vh 2vw;
 }
 
 @keyframes pulse {

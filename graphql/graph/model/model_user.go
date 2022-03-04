@@ -15,3 +15,18 @@ type User struct {
 	Carts       []*Cart    `json:"carts"`
 	Addresses   []*Address `json:"addresses"`
 }
+
+type NewUser struct {
+	Name     string `json:"name"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
+type UpdateUser struct {
+	Name   string `json:"name"`
+	Email  string `json:"email"`
+	Dob    string `json:"dob"`
+	Gender string `json:"gender"`
+	Phone  string `json:"phone"`
+	Image  string `json:"image"`
+}

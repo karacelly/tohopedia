@@ -21,6 +21,7 @@ const Home: NextPage = () => {
         name
         price
         stock
+        discount
         images {
           image
         }
@@ -54,12 +55,13 @@ const Home: NextPage = () => {
                         <Image
                           src={p.images[0] ? p.images[0].image : noPhoto}
                           alt="product"
+                          objectFit="cover"
                           layout="fill"
                         ></Image>
                       </div>
                       <div className={s.dets}>
                         <p>{p?.name}</p>
-                        <h5>Rp{p?.price}</h5>
+                        <h5>Rp{p?.price - (p?.discount / 100) * p?.price}</h5>
                       </div>
                     </Card>
                   </a>

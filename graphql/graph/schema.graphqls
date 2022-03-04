@@ -187,6 +187,7 @@ type Query {
   users: [User!]! @goField(forceResolver: true)
   categories: [Category!]! @goField(forceResolver: true)
   addresses: [Address!]! @goField(forceResolver: true)
+  carts: [Cart!]! @goField(forceResolver: true) @auth
   allProducts: [Product!]! @goField(forceResolver: true)
   products(limit: Int!, offset: Int!): [Product!]! @goField(forceResolver: true)
   productsPaginate(limit: Int!, offset: Int!, shopID: String!): [Product!]!

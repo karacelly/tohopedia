@@ -29,7 +29,13 @@ func (r *authOpsResolver) Register(ctx context.Context, obj *model.AuthOps, inpu
 }
 
 func (r *cartResolver) Product(ctx context.Context, obj *model.Cart) (*model.Product, error) {
-	panic(fmt.Errorf("not implemented"))
+	db := config.GetDB()
+	var model *model.Product
+	if err := db.Where("id = ?", obj.ProductID).Find(&model).Error; err != nil {
+		return nil, err
+	}
+
+	return model, nil
 }
 
 func (r *cartResolver) User(ctx context.Context, obj *model.Cart) (*model.User, error) {
@@ -347,7 +353,42 @@ func (r *mutationResolver) AddProduct(ctx context.Context, input model.NewProduc
 }
 
 func (r *mutationResolver) AddToCart(ctx context.Context, input model.NewCart) (*model.Cart, error) {
-	panic(fmt.Errorf("not implemented"))
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	userId := ctx.Value("auth").(*service.JwtCustomClaim).ID
+
+	var userCart []*model.Cart
+
+	if err := db.Where("user_id = ?", userId).Find(&userCart).Error; err != nil {
+		return nil, err
+	}
+
+	if len(userCart) > 0 {
+		for i := 0; i < len(userCart); i++ {
+			if userCart[i].ProductID == input.ProductID {
+				userCart[i].Quantity += input.Quantity
+
+				return userCart[i], db.Save(userCart[i]).Error
+			}
+		}
+	}
+
+	cart := &model.Cart{
+		ID:        uuid.NewString(),
+		ProductID: input.ProductID,
+		UserId:    userId,
+		Quantity:  input.Quantity,
+		Checked:   true,
+		Note:      input.Note,
+	}
+
+	return cart, db.Create(cart).Error
 }
 
 func (r *productResolver) Images(ctx context.Context, obj *model.Product) ([]*model.ProductImage, error) {
@@ -428,6 +469,19 @@ func (r *queryResolver) Addresses(ctx context.Context) ([]*model.Address, error)
 	}
 
 	return address, nil
+}
+
+func (r *queryResolver) Carts(ctx context.Context) ([]*model.Cart, error) {
+	db := config.GetDB()
+
+	var carts []*model.Cart
+	userId := ctx.Value("auth").(*service.JwtCustomClaim).ID
+
+	if err := db.Where("user_id = ?", userId).Find(&carts).Error; err != nil {
+		return nil, err
+	}
+
+	return carts, nil
 }
 
 func (r *queryResolver) AllProducts(ctx context.Context) ([]*model.Product, error) {

@@ -23,3 +23,12 @@ type NewAddress struct {
 	Address    string `json:"address"`
 	IsMain     bool   `json:"isMain"`
 }
+
+type UpdateAddress struct {
+	Label      string `json:"label"`
+	Receiver   string `json:"receiver"`
+	Phone      string `json:"phone"`
+	City       string `json:"city"`
+	PostalCode string `json:"postalCode"`
+	Address    string `json:"address"`
+}

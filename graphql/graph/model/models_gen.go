@@ -2,62 +2,7 @@
 
 package model
 
-import (
-	"time"
-)
-
 type AuthOps struct {
 	Login    interface{} `json:"login"`
 	Register interface{} `json:"register"`
-}
-
-
-type NewCart struct {
-	ProductID string  `json:"productId"`
-	Quantity  int     `json:"quantity"`
-	Note      *string `json:"note"`
-}
-
-type NewShop struct {
-	Name       string `json:"name"`
-	Slug       string `json:"slug"`
-	Phone      string `json:"phone"`
-	City       string `json:"city"`
-	PostalCode string `json:"postalCode"`
-	Address    string `json:"address"`
-}
-
-type NewUser struct {
-	Name     string `json:"name"`
-	Email    string `json:"email"`
-	Password string `json:"password"`
-}
-
-type UpdateAddress struct {
-	Label      string `json:"label"`
-	Receiver   string `json:"receiver"`
-	Phone      string `json:"phone"`
-	City       string `json:"city"`
-	PostalCode string `json:"postalCode"`
-	Address    string `json:"address"`
-}
-
-type UpdateShop struct {
-	Image       string    `json:"image"`
-	Name        string    `json:"name"`
-	Slug        string    `json:"slug"`
-	Slogan      string    `json:"slogan"`
-	IsOpen      bool      `json:"isOpen"`
-	Description string    `json:"description"`
-	OpenTime    time.Time `json:"openTime"`
-	CloseTime   time.Time `json:"closeTime"`
-}
-
-type UpdateUser struct {
-	Name   string `json:"name"`
-	Email  string `json:"email"`
-	Dob    string `json:"dob"`
-	Gender string `json:"gender"`
-	Phone  string `json:"phone"`
-	Image  string `json:"image"`
 }

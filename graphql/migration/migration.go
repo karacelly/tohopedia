@@ -8,7 +8,5 @@ import (
 func MigrateTable() {
 	db := config.GetDB()
 
-	db.AutoMigrate(&model.Product{})
-	db.AutoMigrate(&model.ProductImage{})
-	db.AutoMigrate(&model.Address{})
+	db.AutoMigrate(&model.Cart{})
 }

@@ -133,6 +133,7 @@ type ComplexityRoot struct {
 	Query struct {
 		Addresses        func(childComplexity int) int
 		AllProducts      func(childComplexity int) int
+		Carts            func(childComplexity int) int
 		Categories       func(childComplexity int) int
 		GetCurrentShop   func(childComplexity int) int
 		GetCurrentUser   func(childComplexity int) int
@@ -227,6 +228,7 @@ type QueryResolver interface {
 	Users(ctx context.Context) ([]*model.User, error)
 	Categories(ctx context.Context) ([]*model.Category, error)
 	Addresses(ctx context.Context) ([]*model.Address, error)
+	Carts(ctx context.Context) ([]*model.Cart, error)
 	AllProducts(ctx context.Context) ([]*model.Product, error)
 	Products(ctx context.Context, limit int, offset int) ([]*model.Product, error)
 	ProductsPaginate(ctx context.Context, limit int, offset int, shopID string) ([]*model.Product, error)
@@ -689,6 +691,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Query.AllProducts(childComplexity), true
+
+	case "Query.carts":
+		if e.complexity.Query.Carts == nil {
+			break
+		}
+
+		return e.complexity.Query.Carts(childComplexity), true
 
 	case "Query.categories":
 		if e.complexity.Query.Categories == nil {
@@ -1229,6 +1238,7 @@ type Query {
   users: [User!]! @goField(forceResolver: true)
   categories: [Category!]! @goField(forceResolver: true)
   addresses: [Address!]! @goField(forceResolver: true)
+  carts: [Cart!]! @goField(forceResolver: true) @auth
   allProducts: [Product!]! @goField(forceResolver: true)
   products(limit: Int!, offset: Int!): [Product!]! @goField(forceResolver: true)
   productsPaginate(limit: Int!, offset: Int!, shopID: String!): [Product!]!
@@ -3828,6 +3838,61 @@ func (ec *executionContext) _Query_addresses(ctx context.Context, field graphql.
 	res := resTmp.([]*model.Address)
 	fc.Result = res
 	return ec.marshalNAddress2ᚕᚖgraphqlᚋgraphᚋmodelᚐAddressᚄ(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _Query_carts(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	fc := &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
+	}
+
+	ctx = graphql.WithFieldContext(ctx, fc)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		directive0 := func(rctx context.Context) (interface{}, error) {
+			ctx = rctx // use context from middleware stack in children
+			return ec.resolvers.Query().Carts(rctx)
+		}
+		directive1 := func(ctx context.Context) (interface{}, error) {
+			if ec.directives.Auth == nil {
+				return nil, errors.New("directive auth is not implemented")
+			}
+			return ec.directives.Auth(ctx, nil, directive0)
+		}
+
+		tmp, err := directive1(rctx)
+		if err != nil {
+			return nil, graphql.ErrorOnPath(ctx, err)
+		}
+		if tmp == nil {
+			return nil, nil
+		}
+		if data, ok := tmp.([]*model.Cart); ok {
+			return data, nil
+		}
+		return nil, fmt.Errorf(`unexpected type %T from directive, should be []*graphql/graph/model.Cart`, tmp)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.([]*model.Cart)
+	fc.Result = res
+	return ec.marshalNCart2ᚕᚖgraphqlᚋgraphᚋmodelᚐCartᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_allProducts(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -7756,6 +7821,29 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_addresses(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx, innerFunc)
+			}
+
+			out.Concurrently(i, func() graphql.Marshaler {
+				return rrm(innerCtx)
+			})
+		case "carts":
+			field := field
+
+			innerFunc := func(ctx context.Context) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_carts(ctx, field)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}
