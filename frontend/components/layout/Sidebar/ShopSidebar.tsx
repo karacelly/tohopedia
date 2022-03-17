@@ -39,26 +39,31 @@ const ShopSidebar = () => {
         </div>
         <h2>{data ? data.getCurrentShop.name : "null"}</h2>
         <div className={s.navigation}>
-          <Link href="/seller/dashboard">
+          <Link href={`/${data?.getCurrentShop.name}/dashboard`}>
             <a className={s.link}>
               <h4>Dashboard</h4>
             </a>
           </Link>
           <Accordion title="Product">
             <div className={s.allProduct}>
-              <Link href="/seller/allProduct">
+              <Link href={`/${data?.getCurrentShop.slug}/allProduct`}>
                 <a className={s.link}>
                   <span>All Product</span>
                 </a>
               </Link>
-              <Link href="/seller/addProduct">
+              <Link href={`/${data?.getCurrentShop.slug}/addProduct`}>
                 <a className={s.link}>
                   <span>Add Product</span>
                 </a>
               </Link>
             </div>
           </Accordion>
-          <Link href="/seller/editShop">
+          <Link href={`/${data?.getCurrentShop.slug}/voucher`}>
+            <a className={s.link}>
+              <h4>Voucher</h4>
+            </a>
+          </Link>
+          <Link href={`/${data?.getCurrentShop.slug}/editShop`}>
             <a className={s.link}>
               <h4>Shop Settings</h4>
             </a>

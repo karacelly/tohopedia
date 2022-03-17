@@ -9,20 +9,22 @@ type Category struct {
 }
 
 type Product struct {
-	ID          string          `json:"id"`
-	OriginalID  string          `json:"originalId"`
-	Name        string          `json:"name"`
-	Images      []*ProductImage `json:"productImageID" gorm:"size:191"`
-	Description string          `json:"description"`
-	Price       int             `json:"price"`
-	Stock       int             `json:"stock"`
-	Discount    int             `json:"discount"`
-	Metadata   []*ProductMetadata `json:"productMetadataID" gorm:"size:191"`
-	CreatedAt  time.Time          `json:"createdAt"`
-	CategoryID string             `json:"categoryId" gorm:"size:191"`
-	Category   *Category          `json:"category"`
-	ShopID     string             `json:"shopID" gorm:"size:191"`
-	Shop       *Shop              `json:"shop"`
+	ID          string             `json:"id"`
+	OriginalID  string             `json:"originalId"`
+	Name        string             `json:"name"`
+	Images      []*ProductImage    `json:"images"`
+	Description string             `json:"description"`
+	Price       int                `json:"price"`
+	Stock       int                `json:"stock"`
+	Rating      float64            `json:"rating"`
+	Discount    int                `json:"discount"`
+	Sold        int                `json:"sold"`
+	Metadata    []*ProductMetadata `json:"metadata"`
+	CreatedAt   time.Time          `json:"createdAt"`
+	CategoryID  string             `json:"categoryId" gorm:"size:191"`
+	Category    *Category          `json:"category"`
+	ShopID      string             `json:"shopID" gorm:"size:191"`
+	Shop        *Shop              `json:"shop"`
 }
 
 type ProductImage struct {

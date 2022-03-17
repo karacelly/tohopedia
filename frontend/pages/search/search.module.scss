@@ -1,0 +1,169 @@
+.container {
+  margin: 3vh 2vw;
+  display: flex;
+  flex-direction: row;
+}
+
+.filter {
+  width: 25%;
+}
+
+.result {
+  width: 100%;
+}
+
+.top {
+  display: flex;
+  padding: 3vh 1vw;
+}
+
+.topShop {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.topProducts {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.cardCon {
+  padding: 1vh 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 14vw;
+  height: 20vw;
+
+  p,
+  h4,
+  span {
+    margin: 0.5vh;
+  }
+
+  .discount {
+    #disc {
+      font-size: 2vh;
+      color: red;
+      background-color: pink;
+    }
+    #price {
+      font-size: 2.2vh;
+      text-decoration: line-through;
+    }
+  }
+}
+
+.all {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 2vh 0;
+}
+
+.shopImg {
+  position: relative;
+  width: 5vw;
+  height: 5vw;
+}
+
+.cardImg {
+  position: relative;
+  width: 9vw;
+  height: 9vw;
+}
+
+.paginate {
+  margin: 1vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sort {
+  margin-top: 2vh;
+  display: flex;
+  justify-content: flex-end;
+
+  select {
+    width: 15%;
+    height: 4vh;
+    border-radius: 5px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .filter {
+    width: 35%;
+  }
+
+  .card {
+    width: 16vw;
+    height: 22vw;
+
+    p,
+    h4,
+    span {
+      font-size: 1vh;
+    }
+
+    .discount {
+      #disc,
+      #price {
+        font-size: 0.8vh;
+      }
+    }
+  }
+
+  .sort {
+    select {
+      width: 30%;
+      height: 2vh;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .filter {
+    width: 100%;
+  }
+
+  .card {
+    width: 20vw;
+    height: 25vw;
+
+    p,
+    h4,
+    span {
+      font-size: 1vh;
+    }
+
+    .discount {
+      #disc,
+      #price {
+        font-size: 0.8vh;
+      }
+    }
+  }
+}

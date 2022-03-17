@@ -1,0 +1,153 @@
+.body {
+  display: flex;
+}
+
+.container {
+  width: 100%;
+}
+
+.title {
+  padding: 2vh 0 0 3vw;
+}
+
+.card {
+  width: 100%;
+  padding: 0 3vw 3vw 3vw;
+
+  table {
+    width: 100%;
+
+    th,
+    td {
+      padding: 1.5vw;
+      text-align: center;
+    }
+
+    button {
+      background-color: $primary-color;
+      color: white;
+      border: 0;
+      padding: 1vh 1vw;
+      border-radius: 5px;
+    }
+  }
+}
+
+.table {
+  overflow: auto;
+}
+
+.btn {
+  display: flex;
+  margin: 2vh 0;
+  justify-content: flex-end;
+  align-items: right;
+
+  button {
+    padding: 1vh 2vw;
+    background-color: $primary-color;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+  }
+}
+
+.innerCon {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0, 0, 0, 0.4);
+  z-index: 1;
+  top: 0;
+  left: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .form {
+    background-color: white;
+    margin: 0;
+    padding: 5vh 5vw;
+    border-radius: 5px;
+    width: 70%;
+    max-height: 70%;
+    overflow: auto;
+
+    form {
+      width: 100%;
+      padding-bottom: 3vh;
+    }
+  }
+
+  .back {
+    cursor: pointer;
+  }
+
+  .field {
+    width: 100%;
+    margin: 3vh 0;
+    display: flex;
+    flex-direction: column;
+
+    input,
+    textarea {
+      border-radius: 5px;
+      border: 1px solid rgb(182, 182, 182);
+    }
+
+    input {
+      height: 4vh;
+    }
+
+    textarea {
+      height: 10vh;
+    }
+
+    label {
+      font-weight: bold;
+      font-size: 1.2vw;
+      padding-bottom: 1vh;
+    }
+  }
+
+  .timeRange {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    margin: 3vh 0;
+
+    .field {
+      margin: 0;
+    }
+  }
+
+  .submit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5vh;
+
+    button {
+      padding: 1vh 3vw;
+      background-color: $primary-color;
+      color: white;
+      border: 0;
+      width: 30%;
+      border-radius: 5px;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .hide {
+    display: none;
+  }
+
+  .fields,
+  .photo {
+    width: 80%;
+  }
+}

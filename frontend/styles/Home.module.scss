@@ -61,6 +61,27 @@
     Bitstream Vera Sans Mono, Courier New, monospace;
 }
 
+.dets {
+  span {
+    font-size: 1vw;
+    color: gray;
+    text-decoration: line-through;
+  }
+
+  h5 {
+    font-size: 1.2vw;
+  }
+
+  #disc {
+    font-size: 0.8vw;
+    font-weight: bold;
+    background-color: pink;
+    color: red;
+    padding: 0.2vh 0.2vw;
+    text-decoration: none;
+  }
+}
+
 .grid {
   display: flex;
   align-items: center;
@@ -70,8 +91,8 @@
 }
 
 .card {
-  margin: 1rem;
-  padding: 1.5rem;
+  margin: 1.5vw;
+  padding: 2vw;
   text-align: left;
   color: inherit;
   text-decoration: none;
@@ -96,7 +117,7 @@
 
 .card p {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.5vw;
   line-height: 1.5;
 }
 
@@ -116,6 +137,10 @@
   flex-wrap: wrap;
   margin: 0 3vw;
   justify-content: center;
+}
+
+.separate {
+  margin: 0 5vw;
 }
 
 .h64 {
@@ -138,9 +163,152 @@
   background-color: rgb(51 65 85 / var(--tw-bg-opacity));
 }
 
+.carousel {
+  width: 100%;
+  padding: 5vh 5vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.slider {
+  width: 90vw;
+  text-align: center;
+  overflow: hidden;
+}
+
+.imgContainer {
+  position: relative;
+  width: 90vw;
+  height: 25vw;
+}
+
+.slides {
+  display: flex;
+  width: 100%;
+  position: relative;
+
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.slides::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.slides::-webkit-scrollbar-thumb {
+  background: $primary-color;
+  border-radius: 10px;
+}
+
+.slides::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.slides > div {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 90vw;
+  height: 25vw;
+  margin-right: 50px;
+  border-radius: 10px;
+  background: #eee;
+  transform-origin: center center;
+  transform: scale(1);
+  transition: transform 0.5s;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+
+.slides > div:target {
+  transform: scale(0.8);
+}
+
+.slider > a {
+  display: inline-flex;
+  width: 1rem;
+  height: 1rem;
+  background: white;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 0 0.5rem 0;
+  position: relative;
+}
+
+.slider > a:active {
+  top: 1px;
+}
+
+.slider > a:focus {
+  background: $primary-color;
+  color: $primary-color;
+}
+
+.left,
+.right {
+  position: absolute;
+  background-color: rgb(255, 255, 255, 0.7);
+  padding: 1vh 0;
+  z-index: 1;
+  top: 55vh;
+}
+
+.left a,
+.right a {
+  padding: 1vh 1vw;
+}
+
+.left {
+  left: 5vw;
+}
+.right {
+  right: 5vw;
+}
+
+@media (max-width: 960px) {
+  .left,
+  .right {
+    top: 25vh;
+  }
+}
+
 @media (max-width: 600px) {
+  .left,
+  .right {
+    top: 20vh;
+  }
+
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+
+  .container {
+    margin: 1vw 2vw;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 1vw;
+    height: 12vh;
+    width: 10vh;
+  }
+
+  .card p,
+  .card h5 {
+    font-size: 2vw;
   }
 }

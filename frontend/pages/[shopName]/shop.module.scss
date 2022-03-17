@@ -1,0 +1,215 @@
+.profile {
+  margin: 3vw;
+  display: flex;
+}
+
+.img {
+  position: relative;
+  width: 5vw;
+  height: 5vw;
+  margin: 0 2vw;
+}
+
+.badge {
+  position: relative;
+  width: 1.5vw;
+  height: 1.5vw;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+}
+
+.video {
+  padding: 1vh 3vw;
+  width: 100%;
+  height: 50vw;
+}
+
+.title {
+  margin: 0 3vw;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 1vh 1vw;
+    width: 15vw;
+    height: 40vh;
+
+    .img {
+      width: 7vw;
+      height: 7vw;
+    }
+  }
+}
+
+.paginate {
+  display: flex;
+  justify-content: center;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.carousel {
+  width: 100%;
+  padding: 5vh 5vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.slider {
+  width: 90vw;
+  text-align: center;
+  overflow: hidden;
+}
+
+.imgContainer {
+  position: relative;
+  width: 90vw;
+  height: 25vw;
+}
+
+.slides {
+  display: flex;
+  width: 100%;
+  position: relative;
+
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.slides::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.slides::-webkit-scrollbar-thumb {
+  background: $primary-color;
+  border-radius: 10px;
+}
+
+.slides::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.slides > div {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 90vw;
+  height: 25vw;
+  margin-right: 50px;
+  border-radius: 10px;
+  background: #eee;
+  transform-origin: center center;
+  transform: scale(1);
+  transition: transform 0.5s;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+
+.slides > div:target {
+  transform: scale(0.8);
+}
+
+.slider > a {
+  display: inline-flex;
+  width: 1rem;
+  height: 1rem;
+  background: white;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 0 0.5rem 0;
+  position: relative;
+}
+
+.slider > a:active {
+  top: 1px;
+}
+
+.slider > a:focus {
+  background: $primary-color;
+  color: $primary-color;
+}
+
+.left,
+.right {
+  position: absolute;
+  background-color: rgb(255, 255, 255, 0.7);
+  padding: 1vh 0;
+  z-index: 1;
+  top: 80vh;
+}
+
+.left a,
+.right a {
+  padding: 1vh 1vw;
+}
+
+.left {
+  left: 5vw;
+}
+.right {
+  right: 5vw;
+}
+
+@media screen and (max-width: 1200px) {
+  .cards {
+    .card {
+      height: 30vw;
+      width: 18vw;
+
+      .img {
+        width: 10vw;
+        height: 10vw;
+      }
+    }
+  }
+
+  .left,
+  .right {
+    top: 40vh;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .cards {
+    .card {
+      height: 50vw;
+      width: 30vw;
+
+      .img {
+        width: 10vw;
+        height: 10vw;
+      }
+    }
+  }
+
+  .left,
+  .right {
+    top: 35vh;
+  }
+}

@@ -7,6 +7,12 @@ import googlePlay from "../../../public/images/googlePlay.png";
 import appStore from "../../../public/images/appStore.png";
 import Button from "../../common/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebook,
+  faTwitter,
+  faPinterest,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons";
 import Card from "../../common/Card";
 
 const Footer = () => {
@@ -17,37 +23,31 @@ const Footer = () => {
           <div className={s.left}>
             <p className={s.title}>Tokopedia</p>
             <p>
-              <Link href="">
-                <a>About Tokopedia</a>
-              </Link>
+              <a href="https://www.tokopedia.com/about/">About Tokopedia</a>
             </p>
             <p>
-              <Link href="">
-                <a>Career</a>
-              </Link>
+              <a href="https://www.tokopedia.com/careers/">Career</a>
             </p>
             <p>
-              <Link href="">
-                <a>Blog</a>
-              </Link>
+              <a href="https://www.tokopedia.com/blog/">Blog</a>
             </p>
             <p>
-              <Link href="">
-                <a>Toko Points</a>
-              </Link>
+              <a href="https://www.tokopedia.com/discovery/tokopoints">
+                Toko Points
+              </a>
             </p>
             <p>
-              <Link href="">
-                <a>Tokopedia Affiliate Program</a>
-              </Link>
+              <a href="https://affiliate.tokopedia.com/">
+                Tokopedia Affiliate Program
+              </a>
             </p>
           </div>
           <div className={s.mid}>
             <p className={s.title}>Buy</p>
             <p>
-              <Link href="">
-                <a>Bill &#38; Top up</a>
-              </Link>
+              <a href="https://www.tokopedia.com/daftar-halaman/">
+                Bill &#38; Top up
+              </a>
             </p>
             <p>
               <Link href="">
@@ -61,9 +61,9 @@ const Footer = () => {
             </p>
             <p className={s.title}>Sell</p>
             <p>
-              <Link href="">
-                <a>Seller Educative Center</a>
-              </Link>
+              <a href="https://seller.tokopedia.com/edu/">
+                Seller Educative Center
+              </a>
             </p>
             <p>
               <Link href="">
@@ -94,7 +94,20 @@ const Footer = () => {
               </Link>
             </p>
             <p className={s.title}>Follow Us</p>
-            <div className={s.socmed}></div>
+            <div className={s.socmed}>
+              <a href="https://facebook.com/tokopedia">
+                <FontAwesomeIcon icon={faFacebook} />
+              </a>
+              <a href="https://twitter.com/tokopedia">
+                <FontAwesomeIcon icon={faTwitter} />
+              </a>
+              <a href="https://www.pinterest.com/tokopedia/">
+                <FontAwesomeIcon icon={faPinterest} />
+              </a>
+              <a href="https://www.instagram.com/tokopedia/">
+                <FontAwesomeIcon icon={faInstagram} />
+              </a>
+            </div>
           </div>
         </div>
         <div className={s.footerRight}>

@@ -23,9 +23,13 @@ type User {
   dob: Date!
   image: String!
   role: String!
+  balance: Int!
+  enable2FA: Boolean!
   isSuspended: Boolean!
+  unsuspendReq: Boolean!
   shop: Shop! @goField(forceResolver: true)
   carts: [Cart!]! @goField(forceResolver: true)
+  wishlist: [Wishlist!]! @goField(forceResolver: true)
   addresses: [Address!]! @goField(forceResolver: true)
 }
 
@@ -37,7 +41,6 @@ input NewUser {
 
 input UpdateUser {
   name: String!
-  email: String!
   dob: String!
   gender: String!
   phone: String!
@@ -76,11 +79,21 @@ type Shop {
   closeTime: Time!
   isOpen: Boolean!
   reputationPoint: Int!
+  promotionalVid: String!
   user: User! @goField(forceResolver: true)
   products: [Product!]! @goField(forceResolver: true)
+  promos: [ShopPromo!]! @goField(forceResolver: true)
+  vouchers: [Voucher!]! @goField(forceResolver: true)
   city: String!
   postalCode: String!
   address: String!
+}
+
+type ShopPromo {
+  id: ID!
+  name: String!
+  image: String!
+  shop: Shop! @goField(forceResolver: true)
 }
 
 type Product {
@@ -91,7 +104,9 @@ type Product {
   description: String!
   price: Int!
   stock: Int!
+  rating: Float!
   discount: Int!
+  sold: Int!
   metadata: [ProductMetadata] @goField(forceResolver: true)
   createdAt: Time!
   category: Category! @goField(forceResolver: true)
@@ -115,6 +130,29 @@ input NewProduct {
   categoryId: String!
   label: String!
   value: String!
+}
+
+type Voucher {
+  id: ID!
+  name: String!
+  description: String!
+  discountRate: Int!
+  condition: String!
+  startDate: Time!
+  endDate: Time!
+  global: Boolean!
+  shop: Shop @goField(forceResolver: true)
+}
+
+input NewVoucher {
+  name: String!
+  description: String!
+  discountRate: Int!
+  condition: String!
+  startDate: Time!
+  endDate: Time!
+  global: Boolean!
+  shopID: String
 }
 
 type Category {
@@ -164,6 +202,12 @@ type Cart {
   note: String
 }
 
+type Wishlist {
+  id: ID!
+  product: Product! @goField(forceResolver: true)
+  user: User! @goField(forceResolver: true)
+}
+
 input NewCart {
   productId: String!
   quantity: Int!
@@ -182,7 +226,8 @@ type AuthOps {
 }
 
 type Query {
-  user(id: ID!): User! @goField(forceResolver: true)
+  user(id: String!): User! @goField(forceResolver: true)
+  userByEmail(email: String!): User! @goField(forceResolver: true)
   product(id: ID!): Product! @goField(forceResolver: true)
   users: [User!]! @goField(forceResolver: true)
   categories: [Category!]! @goField(forceResolver: true)
@@ -190,10 +235,27 @@ type Query {
   carts: [Cart!]! @goField(forceResolver: true) @auth
   allProducts: [Product!]! @goField(forceResolver: true)
   products(limit: Int!, offset: Int!): [Product!]! @goField(forceResolver: true)
+  searchProduct(
+    limit: Int
+    offset: Int
+    key: String!
+    sortBy: Int
+    filterBy: String
+  ): [Product!]! @goField(forceResolver: true)
+  searchShop(key: String!): Shop! @goField(forceResolver: true)
   productsPaginate(limit: Int!, offset: Int!, shopID: String!): [Product!]!
     @goField(forceResolver: true)
+  usersPaginate(limit: Int!, offset: Int!): [User!]!
+    @goField(forceResolver: true)
+  shopBySlug(slug: String!): Shop! @goField(forceResolver: true)
   getCurrentUser: User! @goField(forceResolver: true) @auth
   getCurrentShop: Shop! @goField(forceResolver: true) @auth
+  checkWishlist(productId: String!): Wishlist!
+    @goField(forceResolver: true)
+    @auth
+  wishlists: [Wishlist!]! @goField(forceResolver: true) @auth
+  globalVouchers: [Voucher!]!
+  shopVouchers(shopId: String!): [Voucher!]! @goField(forceResolver: true) @auth
   # Add Protected Resource
   protected: String! @goField(forceResolver: true) @auth
 }
@@ -203,6 +265,7 @@ type Mutation {
   openShop(input: NewShop!): Shop! @auth
   updateShop(input: UpdateShop!): Shop! @auth
   updateUser(input: UpdateUser!): User! @auth
+  updateEmail(email: String!): User! @auth
   createCategory(name: String!): Category!
   addAddress(input: NewAddress!): Address! @auth
   deleteAddress(id: String!): Address! @auth
@@ -211,5 +274,14 @@ type Mutation {
   addProduct(input: NewProduct!): Product! @auth
   addToCart(input: NewCart!): Cart! @auth
   updateCartQty(id: String!, qty: Int!): Cart! @auth
+  checkCart(id: String!, check: Boolean!): Cart! @auth
   deleteCart(id: String!): Cart! @auth
+  addToWishlist(productId: String!): Wishlist! @auth
+  removeFromWishlist(productId: String!): Wishlist @auth
+  addVoucher(input: NewVoucher!): Voucher! @auth
+  suspendUser(userId: String!): User! @auth
+  enable2FA(enabled: Boolean!): User! @auth
+  requestUnsuspend(userId: String!): User!
+  resetPassword(userId: String!, newPassword: String!): User!
+  topup(nominal: Int!): User! @auth
 }

@@ -10,6 +10,8 @@ import (
 	"graphql/graph/generated"
 	"graphql/graph/model"
 	"graphql/service"
+	"graphql/tools"
+	"log"
 	"time"
 
 	"github.com/google/uuid"
@@ -136,11 +138,31 @@ func (r *mutationResolver) UpdateUser(ctx context.Context, input model.UpdateUse
 	}
 
 	user.Name = input.Name
-	user.Email = input.Email
 	user.Dob = input.Dob
 	user.Gender = input.Gender
 	user.Phone = input.Phone
 	user.Image = input.Image
+
+	return user, db.Save(user).Error
+}
+
+func (r *mutationResolver) UpdateEmail(ctx context.Context, email string) (*model.User, error) {
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	user := new(model.User)
+	userId := ctx.Value("auth").(*service.JwtCustomClaim).ID
+
+	if err := db.Where("id = ?", userId).First(&user).Error; err != nil {
+		return nil, err
+	}
+
+	user.Email = email
 
 	return user, db.Save(user).Error
 }
@@ -309,6 +331,8 @@ func (r *mutationResolver) AddProduct(ctx context.Context, input model.NewProduc
 		Price:       input.Price,
 		Stock:       input.Stock,
 		Discount:    input.Discount,
+		Rating:      0,
+		Sold:        0,
 		CreatedAt:   time.Now(),
 		CategoryID:  input.CategoryID,
 		ShopID:      shop.ID,
@@ -405,7 +429,26 @@ func (r *mutationResolver) UpdateCartQty(ctx context.Context, id string, qty int
 		return nil, err
 	}
 
-	cart.Quantity += qty;
+	cart.Quantity = qty
+
+	return cart, db.Save(cart).Error
+}
+
+func (r *mutationResolver) CheckCart(ctx context.Context, id string, check bool) (*model.Cart, error) {
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	cart := new(model.Cart)
+	if err := db.Where("id = ?", id).First(&cart).Error; err != nil {
+		return nil, err
+	}
+
+	cart.Checked = check
 
 	return cart, db.Save(cart).Error
 }
@@ -427,12 +470,184 @@ func (r *mutationResolver) DeleteCart(ctx context.Context, id string) (*model.Ca
 	return cart, db.Delete(cart).Error
 }
 
+func (r *mutationResolver) AddToWishlist(ctx context.Context, productID string) (*model.Wishlist, error) {
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	userId := ctx.Value("auth").(*service.JwtCustomClaim).ID
+
+	wishlist := new(model.Wishlist)
+	if err := db.Where("product_id = ? and user_id = ?", productID, userId).First(&wishlist).Error; err != nil {
+		newWishlist := &model.Wishlist{
+			ID:        uuid.NewString(),
+			ProductID: productID,
+			UserId:    userId,
+		}
+
+		return newWishlist, db.Create(newWishlist).Error
+	}
+
+	return wishlist, nil
+}
+
+func (r *mutationResolver) RemoveFromWishlist(ctx context.Context, productID string) (*model.Wishlist, error) {
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	userId := ctx.Value("auth").(*service.JwtCustomClaim).ID
+
+	wishlist := new(model.Wishlist)
+	if err := db.Where("product_id = ? and user_id = ?", productID, userId).First(&wishlist).Error; err != nil {
+		return nil, err
+	}
+
+	return wishlist, db.Delete(wishlist).Error
+}
+
+func (r *mutationResolver) AddVoucher(ctx context.Context, input model.NewVoucher) (*model.Voucher, error) {
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	newVoucher := &model.Voucher{
+		ID:           uuid.NewString(),
+		Name:         input.Name,
+		Description:  input.Description,
+		DiscountRate: input.DiscountRate,
+		Condition:    input.Condition,
+		StartDate:    input.StartDate,
+		EndDate:      input.EndDate,
+		Global:       input.Global,
+		ShopId:       input.ShopID,
+	}
+
+	return newVoucher, db.Create(newVoucher).Error
+}
+
+func (r *mutationResolver) SuspendUser(ctx context.Context, userID string) (*model.User, error) {
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	user := new(model.User)
+
+	if err := db.Where("id = ?", userID).First(&user).Error; err != nil {
+		return nil, err
+	}
+
+	if !user.IsSuspended == false {
+		user.UnsuspendReq = false
+	}
+
+	user.IsSuspended = !user.IsSuspended
+
+	return user, db.Save(user).Error
+}
+
+func (r *mutationResolver) Enable2fa(ctx context.Context, enabled bool) (*model.User, error) {
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	user := new(model.User)
+
+	userId := ctx.Value("auth").(*service.JwtCustomClaim).ID
+
+	if err := db.Where("id = ?", userId).First(&user).Error; err != nil {
+		return nil, err
+	}
+
+	user.Enable2fa = enabled
+
+	return user, db.Save(user).Error
+}
+
+func (r *mutationResolver) RequestUnsuspend(ctx context.Context, userID string) (*model.User, error) {
+	db := config.GetDB()
+
+	user := new(model.User)
+
+	if err := db.Where("id = ?", userID).First(&user).Error; err != nil {
+		return nil, err
+	}
+
+	user.UnsuspendReq = true
+
+	return user, db.Save(user).Error
+}
+
+func (r *mutationResolver) ResetPassword(ctx context.Context, userID string, newPassword string) (*model.User, error) {
+	db := config.GetDB()
+
+	user := new(model.User)
+
+	if err := db.Where("id = ?", userID).First(&user).Error; err != nil {
+		return nil, err
+	}
+
+	user.Password = tools.HashPassword(newPassword)
+
+	return user, db.Save(user).Error
+}
+
+func (r *mutationResolver) Topup(ctx context.Context, nominal int) (*model.User, error) {
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	user := new(model.User)
+	userId := ctx.Value("auth").(*service.JwtCustomClaim).ID
+
+	if err := db.Where("id = ?", userId).First(&user).Error; err != nil {
+		return nil, err
+	}
+
+	user.Balance += nominal
+
+	return user, db.Save(user).Error
+}
+
 func (r *productResolver) Images(ctx context.Context, obj *model.Product) ([]*model.ProductImage, error) {
 	db := config.GetDB()
 	var images []*model.ProductImage
+
 	if err := db.Where("product_id = ?", obj.ID).Find(&images).Error; err != nil {
 		return nil, err
 	}
+	log.Println(obj.ID)
+	// log.Printf("Image Length: %d\n",len(images))
+
+	// for i := range(images) {
+	// 	log.Printf("Image Length: %s\n",images[i].Image)
+	// }
+
+	// log.Println("Masuk Images")
 
 	return images, nil
 }
@@ -462,7 +677,13 @@ func (r *productResolver) Shop(ctx context.Context, obj *model.Product) (*model.
 }
 
 func (r *productImageResolver) Product(ctx context.Context, obj *model.ProductImage) (*model.Product, error) {
-	panic(fmt.Errorf("not implemented"))
+	db := config.GetDB()
+	var prod *model.Product
+	if err := db.Where("id = ?", obj.ProductID).Find(&prod).Error; err != nil {
+		return nil, err
+	}
+
+	return prod, nil
 }
 
 func (r *productMetadataResolver) Product(ctx context.Context, obj *model.ProductMetadata) (*model.Product, error) {
@@ -471,6 +692,10 @@ func (r *productMetadataResolver) Product(ctx context.Context, obj *model.Produc
 
 func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error) {
 	return service.UserGetByID(ctx, id)
+}
+
+func (r *queryResolver) UserByEmail(ctx context.Context, email string) (*model.User, error) {
+	return service.UserGetByEmail(ctx, email)
 }
 
 func (r *queryResolver) Product(ctx context.Context, id string) (*model.Product, error) {
@@ -485,7 +710,9 @@ func (r *queryResolver) Product(ctx context.Context, id string) (*model.Product,
 }
 
 func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
-	panic(fmt.Errorf("not implemented"))
+	db := config.GetDB()
+	var models []*model.User
+	return models, db.Find(&models).Error
 }
 
 func (r *queryResolver) Categories(ctx context.Context) ([]*model.Category, error) {
@@ -532,10 +759,91 @@ func (r *queryResolver) Products(ctx context.Context, limit int, offset int) ([]
 	return models, db.Limit(limit).Offset(offset).Find(&models).Error
 }
 
+func (r *queryResolver) SearchProduct(ctx context.Context, limit *int, offset *int, key string, sortBy *int, filterBy *string) ([]*model.Product, error) {
+	db := config.GetDB()
+	var models []*model.Product
+
+	// sort by
+	// 1 -> paling sesuai
+	// 2 -> added time
+	// 3 -> rating
+	// 4 -> highest price
+	// 5 -> lowest price
+
+	if limit != nil && offset != nil {
+		fmt.Println(*sortBy)
+		if sortBy == nil || *sortBy == 1 {
+			fmt.Println("udh msk")
+			if err := db.Where("name LIKE ?", ("%" + key + "%")).Limit(*limit).Offset(*offset).Find(&models).Error; err != nil {
+				return nil, err
+			}
+		} else if *sortBy == 2 {
+			if err := db.Where("name LIKE ?", ("%" + key + "%")).Limit(*limit).Offset(*offset).Order("created_at").Find(&models).Error; err != nil {
+				return nil, err
+			}
+		} else if *sortBy == 3 {
+			if err := db.Where("name LIKE ?", ("%" + key + "%")).Limit(*limit).Offset(*offset).Order("rating desc").Find(&models).Error; err != nil {
+				return nil, err
+			}
+		} else if *sortBy == 4 {
+			if err := db.Where("name LIKE ?", ("%" + key + "%")).Limit(*limit).Offset(*offset).Order("(price - (price * discount/100)) desc").Find(&models).Error; err != nil {
+				return nil, err
+			}
+		} else if *sortBy == 5 {
+			if err := db.Where("name LIKE ?", ("%" + key + "%")).Limit(*limit).Offset(*offset).Order("(price - (price * discount/100)) asc").Find(&models).Error; err != nil {
+				return nil, err
+			}
+		}
+	} else {
+		if err := db.Where("name LIKE ?", ("%" + key + "%")).Find(&models).Error; err != nil {
+			return nil, err
+		}
+	}
+
+	fmt.Printf("length model: %d\n", len(models))
+
+	if models != nil {
+		for i := 0; i < len(models); i++ {
+			fmt.Printf("%d. ", i)
+			fmt.Println(models[i].ID)
+		}
+	}
+
+	return models, nil
+}
+
+func (r *queryResolver) SearchShop(ctx context.Context, key string) (*model.Shop, error) {
+	db := config.GetDB()
+	var model *model.Shop
+
+	var shopId *string
+	if err := db.Table("shops").Select("shops.id").Joins("join products on products.shop_id = shops.id").Where("products.name LIKE ?", ("%" + key + "%")).Scan(&shopId).Error; err != nil {
+		return nil, err
+	}
+
+	if err := db.Where("id = ?", shopId).Find(&model).Error; err != nil {
+		return nil, err
+	}
+
+	return model, nil
+}
+
 func (r *queryResolver) ProductsPaginate(ctx context.Context, limit int, offset int, shopID string) ([]*model.Product, error) {
 	db := config.GetDB()
 	var models []*model.Product
 	return models, db.Limit(limit).Offset(offset).Where("shop_id = ?", shopID).Find(&models).Error
+}
+
+func (r *queryResolver) UsersPaginate(ctx context.Context, limit int, offset int) ([]*model.User, error) {
+	db := config.GetDB()
+	var models []*model.User
+	return models, db.Limit(limit).Offset(offset).Find(&models).Error
+}
+
+func (r *queryResolver) ShopBySlug(ctx context.Context, slug string) (*model.Shop, error) {
+	db := config.GetDB()
+	var models *model.Shop
+	return models, db.Where("slug = ?", slug).Find(&models).Error
 }
 
 func (r *queryResolver) GetCurrentUser(ctx context.Context) (*model.User, error) {
@@ -563,6 +871,60 @@ func (r *queryResolver) GetCurrentShop(ctx context.Context) (*model.Shop, error)
 	return shop, nil
 }
 
+func (r *queryResolver) CheckWishlist(ctx context.Context, productID string) (*model.Wishlist, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+
+func (r *queryResolver) Wishlists(ctx context.Context) ([]*model.Wishlist, error) {
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	var wishlist []*model.Wishlist
+
+	userId := ctx.Value("auth").(*service.JwtCustomClaim).ID
+
+	if err := db.Where("user_id = ?", userId).Find(&wishlist).Error; err != nil {
+		return nil, err
+	}
+
+	return wishlist, nil
+}
+
+func (r *queryResolver) GlobalVouchers(ctx context.Context) ([]*model.Voucher, error) {
+	db := config.GetDB()
+
+	var vouchers []*model.Voucher
+
+	if err := db.Where("global = ?", true).Find(&vouchers).Error; err != nil {
+		return nil, err
+	}
+
+	return vouchers, nil
+}
+
+func (r *queryResolver) ShopVouchers(ctx context.Context, shopID string) ([]*model.Voucher, error) {
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	var vouchers []*model.Voucher
+
+	if err := db.Where("shop_id = ?", shopID).Find(&vouchers).Error; err != nil {
+		return nil, err
+	}
+
+	return vouchers, nil
+}
+
 func (r *queryResolver) Protected(ctx context.Context) (string, error) {
 	return "Success", nil
 }
@@ -588,15 +950,99 @@ func (r *shopResolver) Products(ctx context.Context, obj *model.Shop) ([]*model.
 	return products, nil
 }
 
+func (r *shopResolver) Promos(ctx context.Context, obj *model.Shop) ([]*model.ShopPromo, error) {
+	db := config.GetDB()
+	var promos []*model.ShopPromo
+	if err := db.Where("shop_id = ?", obj.ID).Find(&promos).Error; err != nil {
+		return nil, err
+	}
+
+	return promos, nil
+}
+
+func (r *shopResolver) Vouchers(ctx context.Context, obj *model.Shop) ([]*model.Voucher, error) {
+	db := config.GetDB()
+	var voucher []*model.Voucher
+	if err := db.Where("shop_id = ?", obj.ID).Find(&voucher).Error; err != nil {
+		return nil, err
+	}
+
+	return voucher, nil
+}
+
+func (r *shopPromoResolver) Shop(ctx context.Context, obj *model.ShopPromo) (*model.Shop, error) {
+	db := config.GetDB()
+	var shop *model.Shop
+	if err := db.Where("id = ?", obj.ShopId).Find(&shop).Error; err != nil {
+		return nil, err
+	}
+
+	return shop, nil
+}
+
 func (r *userResolver) Shop(ctx context.Context, obj *model.User) (*model.Shop, error) {
-	panic(fmt.Errorf("not implemented"))
+	db := config.GetDB()
+	var shop *model.Shop
+	if err := db.Where("user_id = ?", obj.ID).Find(&shop).Error; err != nil {
+		return nil, err
+	}
+
+	return shop, nil
 }
 
 func (r *userResolver) Carts(ctx context.Context, obj *model.User) ([]*model.Cart, error) {
-	panic(fmt.Errorf("not implemented"))
+	db := config.GetDB()
+	var wl []*model.Cart
+	if err := db.Where("user_id = ?", obj.ID).Find(&wl).Error; err != nil {
+		return nil, err
+	}
+
+	return wl, nil
+}
+
+func (r *userResolver) Wishlist(ctx context.Context, obj *model.User) ([]*model.Wishlist, error) {
+	db := config.GetDB()
+	var wl []*model.Wishlist
+	if err := db.Where("user_id = ?", obj.ID).Find(&wl).Error; err != nil {
+		return nil, err
+	}
+
+	return wl, nil
 }
 
 func (r *userResolver) Addresses(ctx context.Context, obj *model.User) ([]*model.Address, error) {
+	db := config.GetDB()
+
+	var address []*model.Address
+
+	if err := db.Where("user_id = ?", obj.ID).Find(&address).Error; err != nil {
+		return nil, err
+	}
+
+	return address, nil
+}
+
+func (r *voucherResolver) Shop(ctx context.Context, obj *model.Voucher) (*model.Shop, error) {
+	db := config.GetDB()
+	var shop *model.Shop
+	if err := db.Where("id = ?", obj.ShopId).Find(&shop).Error; err != nil {
+		return nil, err
+	}
+
+	return shop, nil
+}
+
+func (r *wishlistResolver) Product(ctx context.Context, obj *model.Wishlist) (*model.Product, error) {
+	db := config.GetDB()
+	var prod *model.Product
+	if err := db.Where("id = ?", obj.ProductID).Find(&prod).Error; err != nil {
+		return nil, err
+	}
+
+	return prod, nil
+}
+
+func (r *wishlistResolver) User(ctx context.Context, obj *model.Wishlist) (*model.User, error) {
 	panic(fmt.Errorf("not implemented"))
 }
 
@@ -632,8 +1078,17 @@ func (r *Resolver) Query() generated.QueryResolver { return &queryResolver{r} }
 // Shop returns generated.ShopResolver implementation.
 func (r *Resolver) Shop() generated.ShopResolver { return &shopResolver{r} }
 
+// ShopPromo returns generated.ShopPromoResolver implementation.
+func (r *Resolver) ShopPromo() generated.ShopPromoResolver { return &shopPromoResolver{r} }
+
 // User returns generated.UserResolver implementation.
 func (r *Resolver) User() generated.UserResolver { return &userResolver{r} }
+
+// Voucher returns generated.VoucherResolver implementation.
+func (r *Resolver) Voucher() generated.VoucherResolver { return &voucherResolver{r} }
+
+// Wishlist returns generated.WishlistResolver implementation.
+func (r *Resolver) Wishlist() generated.WishlistResolver { return &wishlistResolver{r} }
 
 type addressResolver struct{ *Resolver }
 type authOpsResolver struct{ *Resolver }
@@ -645,7 +1100,10 @@ type productImageResolver struct{ *Resolver }
 type productMetadataResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
 type shopResolver struct{ *Resolver }
+type shopPromoResolver struct{ *Resolver }
 type userResolver struct{ *Resolver }
+type voucherResolver struct{ *Resolver }
+type wishlistResolver struct{ *Resolver }
 
 // !!! WARNING !!!
 // The code below was going to be deleted when updating resolvers. It has been copied here so you have
@@ -653,6 +1111,53 @@ type userResolver struct{ *Resolver }
 //  - When renaming or deleting a resolver the old code will be put in here. You can safely delete
 //    it when you're done.
 //  - You have helper methods in this file. Move them out to keep these resolver files clean.
+func (r *productResolver) Rating(ctx context.Context, obj *model.Product) (float64, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+func (r *userResolver) Balance(ctx context.Context, obj *model.User) (int, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+func (r *shopResolver) PromotionalVid(ctx context.Context, obj *model.Shop) (string, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+func (r *userResolver) UnsuspendReq(ctx context.Context, obj *model.User) (bool, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+
+type unsuspendReqResolver struct{ *Resolver }
+
+func (r *userResolver) Enable2fa(ctx context.Context, obj *model.User) (bool, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+func (r *voucherResolver) Description(ctx context.Context, obj *model.Voucher) (string, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+func (r *queryResolver) Vouchers(ctx context.Context, shopID *string) ([]*model.Voucher, error) {
+	db := config.GetDB()
+
+	var vouchers []*model.Voucher
+
+	if err := db.Where("shop_id = ?", shopID).Find(&vouchers).Error; err != nil {
+		return nil, err
+	}
+
+	return vouchers, nil
+}
+func (r *newVoucherResolver) StartDate(ctx context.Context, obj *model.NewVoucher) (*time.Time, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+func (r *newVoucherResolver) EndDate(ctx context.Context, obj *model.NewVoucher) (*time.Time, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+func (r *voucherResolver) StartDate(ctx context.Context, obj *model.Voucher) (*time.Time, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+func (r *voucherResolver) EndDate(ctx context.Context, obj *model.Voucher) (*time.Time, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+
+type newVoucherResolver struct{ *Resolver }
+
 func (r *cartResolver) Checked(ctx context.Context, obj *model.Cart) (bool, error) {
 	panic(fmt.Errorf("not implemented"))
 }

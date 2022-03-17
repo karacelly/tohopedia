@@ -46,8 +46,8 @@ func UserLogin(ctx context.Context, email string, password string) (interface{},
 		return nil, err
 	}
 
-	if err := tools.ComparePassword(getUser.Password, password); err != nil {
-		return nil, err
+	if !tools.ComparePassword(getUser.Password, password){
+		return false, nil
 	}
 
 	token, err := JwtGenerate(ctx, getUser.ID)
@@ -57,5 +57,9 @@ func UserLogin(ctx context.Context, email string, password string) (interface{},
 
 	return map[string]interface{}{
 		"token": token,
+		"userID" : getUser.ID,
+		"enable2FA" : getUser.Enable2fa,
+		"isSuspended" : getUser.IsSuspended,
+		"role" : getUser.Role,
 	}, nil
 }

@@ -120,6 +120,7 @@
     padding: 1.5vh 1vw;
     border-radius: 5px;
   }
+  cursor: pointer;
 }
 
 .summaryUp,
@@ -148,5 +149,161 @@
     height: 4vh;
     color: white;
     font-weight: bold;
+  }
+}
+
+.wishlist {
+  padding: 3vh 11vw;
+
+  h4 {
+    margin: 1vh;
+  }
+}
+
+.title {
+  width: 65%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.wcontainer {
+  width: 65%;
+  height: 20vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.wscroll {
+  width: 65%;
+  overflow: auto;
+}
+
+.wcard {
+  width: 40vw;
+  height: 15vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 2vw;
+
+  .img {
+    width: 6vw;
+    height: 6vw;
+  }
+
+  p,
+  h5,
+  span {
+    margin: 1vh;
+  }
+}
+
+.wl {
+  width: 90%;
+  display: flex;
+  align-items: center;
+}
+
+.acts {
+  padding: 1vh 1vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  p {
+    color: rgb(71, 71, 71);
+  }
+
+  button {
+    width: 100%;
+    border: 1px solid $primary-color;
+    background-color: white;
+    border-radius: 5px;
+    color: $primary-color;
+    height: 3vh;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .containerLeft,
+  .containerRight {
+    width: 100%;
+  }
+
+  .dets {
+    span {
+      font-size: 1vw;
+    }
+
+    p {
+      font-size: 2vw;
+    }
+  }
+
+  .action {
+    p {
+      font-size: 2.5vw;
+    }
+  }
+
+  .summaryUp,
+  .summaryDown,
+  .total {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    h4 {
+      font-size: 3vw;
+    }
+    span {
+      font-size: 2.5vw;
+    }
+  }
+
+  .wcontainer,
+  .title {
+    width: 100%;
+  }
+
+  .wscroll {
+    overflow: auto;
+    width: 100%;
+  }
+
+  .wcontainer {
+    height: 25vh;
+    width: 100%;
+  }
+
+  .wcard {
+    padding: 1vh;
+    margin: 1vh;
+    height: 18vh;
+    width: 70vw;
+  }
+
+  .img {
+    width: 17vw;
+    height: 17vw;
+  }
+
+  .wl {
+    .img {
+      width: 15vw;
+      height: 15vw;
+    }
+  }
+
+  .acts {
+    button {
+      font-size: 1vh;
+    }
   }
 }

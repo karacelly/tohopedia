@@ -73,3 +73,9 @@
     font-weight: bold;
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .metadata {
+    flex-direction: column;
+  }
+}

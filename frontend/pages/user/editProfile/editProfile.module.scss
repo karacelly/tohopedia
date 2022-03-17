@@ -79,6 +79,19 @@
   width: 100%;
   justify-content: space-between;
   padding: 1vh 0;
+
+  label,
+  input,
+  select {
+    width: 50%;
+  }
+
+  input,
+  select {
+    border-radius: 5px;
+    border: 1px solid black;
+    height: 4vh;
+  }
 }
 
 .btn {

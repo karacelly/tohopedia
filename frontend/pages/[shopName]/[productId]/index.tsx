@@ -10,6 +10,13 @@ import defaultShop from "../../../public/images/productnophoto.png";
 
 import s from "./detail.module.scss";
 import Hide from "../../../components/common/Hide";
+import {
+  faHeart,
+  faMailBulk,
+  faShare,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Footer from "../../../components/layout/Footer/Footer";
 
 const ProductDetail = () => {
   const router = useRouter();
@@ -19,6 +26,30 @@ const ProductDetail = () => {
   const [price, setPrice] = useState(1);
   const [discount, setDiscount] = useState(0);
   const [note, setNote] = useState("");
+  const [wishlist, setWishlist] = useState(false);
+
+  const [shopProd, setShopProd] = useState(false);
+
+  const getCurrentShopQuery = gql`
+    query getCurrentShop {
+      getCurrentShop {
+        id
+        name
+        slug
+        image
+        user {
+          name
+          image
+        }
+      }
+    }
+  `;
+
+  const {
+    loading: load,
+    error: err,
+    data: currShop,
+  } = useQuery(getCurrentShopQuery);
 
   const productQuery = gql`
     query product($id: ID!) {
@@ -32,12 +63,14 @@ const ProductDetail = () => {
           name
         }
         discount
+        sold
         stock
         price
         shop {
           id
           name
           image
+          slug
         }
       }
     }
@@ -46,6 +79,14 @@ const ProductDetail = () => {
   const { loading, error, data } = useQuery(productQuery, {
     variables: { id: productId },
   });
+
+  useEffect(() => {
+    if (data?.product?.shop?.id == currShop?.getCurrentShop.id) {
+      setShopProd(true);
+    }
+  }, [data, currShop]);
+
+  console.log(shopProd);
 
   const addToCartQuery = gql`
     mutation addToCart($productId: String!, $quantity: Int!, $note: String!) {
@@ -59,6 +100,16 @@ const ProductDetail = () => {
 
   const [addToCart] = useMutation(addToCartQuery);
 
+  const addToWishlistQuery = gql`
+    mutation addToWishlist($productId: String!) {
+      addToWishlist(productId: $productId) {
+        id
+      }
+    }
+  `;
+
+  const [addToWishlist] = useMutation(addToWishlistQuery);
+
   useEffect(() => {
     setDiscount(data?.product?.discount);
     setPrice(
@@ -66,6 +117,12 @@ const ProductDetail = () => {
         (data?.product?.discount / 100) * data?.product?.price
     );
   }, [data]);
+
+  console.log(data);
+
+  if (loading) {
+    return <div>Loading</div>;
+  }
 
   return (
     <div className={s.body}>
@@ -78,7 +135,7 @@ const ProductDetail = () => {
                 return (
                   <div id={idx} key={idx}>
                     <Image
-                      src={i.image}
+                      src={i?.image ? i.image : noPhoto}
                       alt="img"
                       objectFit="cover"
                       layout="fill"
@@ -103,7 +160,7 @@ const ProductDetail = () => {
                   <Link key={idx} href={`#${idx}`} scroll={false}>
                     <a>
                       <Image
-                        src={i.image}
+                        src={i?.image ? i?.image : noPhoto}
                         alt="img"
                         objectFit="cover"
                         layout="fill"
@@ -116,6 +173,7 @@ const ProductDetail = () => {
         </div>
         <div className={s.info}>
           <h3>{data?.product?.name}</h3>
+          <span>Terjual {data?.product?.sold}</span>
           <h1>Rp. {price}</h1>
           {discount && (
             <div>
@@ -125,21 +183,29 @@ const ProductDetail = () => {
           )}
           <hr style={{ border: "1px solid #e0e0e0" }} />
           <p style={{ color: "#a1a1a1" }}>
-            Kategori : {data?.product.category.name}
+            Kategori : {data?.product?.category.name}
           </p>
           <p style={{ color: "#878787" }}>{data?.product.description}</p>
           <hr style={{ border: "1px solid #e0e0e0" }} />
-          <div className={s.shopInfo}>
-            <div className={s.shopPhoto}>
-              <Image
-                src={data ? data?.product?.shop?.image : defaultShop}
-                alt="img"
-                objectFit="cover"
-                layout="fill"
-              ></Image>
-            </div>
-            <h4>{data?.product?.shop?.name}</h4>
-          </div>
+          <Link href={`/${data?.product?.shop?.slug}`}>
+            <a>
+              <div className={s.shopInfo}>
+                <div className={s.shopPhoto}>
+                  <Image
+                    src={
+                      data?.product?.shop?.image
+                        ? data?.product?.shop?.image
+                        : defaultShop
+                    }
+                    alt="img"
+                    objectFit="cover"
+                    layout="fill"
+                  ></Image>
+                </div>
+                <h4>{data?.product?.shop?.name}</h4>
+              </div>
+            </a>
+          </Link>
         </div>
         <div className={s.stock}>
           <h4>Atur jumlah dan catatan</h4>
@@ -171,46 +237,96 @@ const ProductDetail = () => {
               <p>Subtotal</p>
               <h3>Rp{price * stock}</h3>
             </div>
-            <div className={s.btn}>
-              <button id={s.beli}>Beli Langsung</button>
-              <button
-                id={s.cart}
-                onClick={async (e) => {
-                  e.preventDefault();
+            {!shopProd && (
+              <div className={s.btn}>
+                <button id={s.beli}>Beli Langsung</button>
+                <button
+                  id={s.cart}
+                  onClick={async (e) => {
+                    e.preventDefault();
 
-                  try {
-                    console.log(productId);
-                    console.log(stock);
-                    console.log(note);
-                    await addToCart({
-                      variables: {
-                        productId: productId,
-                        quantity: stock,
-                        note: note,
-                      },
-                    });
-                  } catch (error) {
-                    console.log(error);
-                  }
-                  // Router.reload();
-                }}
-              >
-                + Keranjang
-              </button>
-            </div>
+                    try {
+                      console.log(productId);
+                      console.log(stock);
+                      console.log(note);
+                      await addToCart({
+                        variables: {
+                          productId: productId,
+                          quantity: stock,
+                          note: note,
+                        },
+                      });
+                    } catch (error) {
+                      console.log(error);
+                    }
+                    Router.push("/user/cart");
+                  }}
+                >
+                  + Keranjang
+                </button>
+              </div>
+            )}
+            {shopProd && (
+              <div className={s.btn}>
+                <button id={s.beli}>Ubah Produk</button>
+                <button
+                  id={s.cart}
+                  onClick={async (e) => {
+                    e.preventDefault();
+                  }}
+                >
+                  + Hapus Produk
+                </button>
+              </div>
+            )}
           </form>
           <div className={s.action}>
             <div className={s.act}>
+              <FontAwesomeIcon
+                style={{ color: "gray" }}
+                icon={faMailBulk}
+              ></FontAwesomeIcon>
               <Link href={""}>
                 <a>Chat</a>
               </Link>
             </div>
             <div className={s.act} id={s.mid}>
-              <Link href={""}>
-                <a>Wishlist</a>
-              </Link>
+              {wishlist ? (
+                <FontAwesomeIcon
+                  style={{ color: "red" }}
+                  icon={faHeart}
+                ></FontAwesomeIcon>
+              ) : (
+                <FontAwesomeIcon
+                  style={{ color: "gray" }}
+                  icon={faHeart}
+                ></FontAwesomeIcon>
+              )}
+
+              <a
+                onClick={async (e) => {
+                  e.preventDefault();
+
+                  try {
+                    await addToWishlist({
+                      variables: {
+                        productId: productId,
+                      },
+                    });
+                    setWishlist(true);
+                  } catch (error) {
+                    console.log(error);
+                  }
+                }}
+              >
+                Wishlist
+              </a>
             </div>
             <div className={s.act}>
+              <FontAwesomeIcon
+                style={{ color: "gray" }}
+                icon={faShare}
+              ></FontAwesomeIcon>
               <Link href={""}>
                 <a>Share</a>
               </Link>
@@ -218,6 +334,7 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 };

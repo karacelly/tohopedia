@@ -23,6 +23,8 @@ const EditShop = () => {
         slug
         image
         isOpen
+        openTime
+        closeTime
       }
     }
   `;
@@ -91,8 +93,14 @@ const EditShop = () => {
                 slug: data ? data?.getCurrentShop?.slug : "",
                 slogan: data ? data?.getCurrentShop?.slogan : "",
                 description: data ? data?.getCurrentShop?.description : "",
-                openTime: data ? data?.getCurrentShop?.openTime : "00:00",
-                closeTime: data ? data?.getCurrentShop?.closeTime : "00:00",
+                openTime: data
+                  ? data?.getCurrentShop?.openTime.split("T")[1].substring(0, 5)
+                  : "00:00",
+                closeTime: data
+                  ? data?.getCurrentShop?.closeTime
+                      .split("T")[1]
+                      .substring(0, 5)
+                  : "00:00",
                 profile: [],
               }}
               validationSchema={object({
@@ -116,6 +124,8 @@ const EditShop = () => {
                   ? data?.getCurrentShop?.image
                   : "";
 
+                console.log(url);
+
                 try {
                   await editShop({
                     variables: {
@@ -124,9 +134,9 @@ const EditShop = () => {
                       slogan: values.slogan,
                       isOpen: status,
                       description: values.description,
-                      image: url,
-                      openTime: `0001-01-01T${values.openTime}:00.000+07:00`,
-                      closeTime: `0001-01-01T${values.closeTime}:00.000+07:00`,
+                      profile: url,
+                      openTime: `0001-01-01T${values.openTime}:00.999999999Z`,
+                      closeTime: `0001-01-01T${values.closeTime}:00.999999999Z`,
                     },
                   });
                 } catch (error) {

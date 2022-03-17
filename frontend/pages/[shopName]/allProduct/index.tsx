@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import nophoto from "../../../public/images/productnophoto.png";
 import Footer from "../../../components/layout/Footer/Footer";
 import LoggedNavbar from "../../../components/layout/Navbar/LoggedNavbar";
 import ShopSidebar from "../../../components/layout/Sidebar/ShopSidebar";
@@ -40,7 +41,7 @@ const AllProducts = () => {
   const [offset, setOffset] = useState(0);
   const limit = 10;
   let nProd = data?.getCurrentShop?.products?.length;
-  let page = offset / limit + 1;
+  let page = Math.floor(offset / limit) + 1;
   let pages =
     nProd % limit == 0
       ? Math.floor(nProd / limit)
@@ -102,7 +103,7 @@ const AllProducts = () => {
                         <td className={s.info}>
                           <div className={s.img}>
                             <Image
-                              src={p?.images[0].image}
+                              src={p?.images[0] ? p?.images[0].image : nophoto}
                               alt="shop img"
                               layout="fill"
                               objectFit="cover"
@@ -132,15 +133,18 @@ const AllProducts = () => {
               </table>
             </Card>
             <div className={s.paginate}>
-              {offset - 1 >= 0 && (
-                <button onClick={() => setOffset(offset - 1)} className={s.act}>
+              {page - 1 > 0 && (
+                <button
+                  onClick={() => setOffset(offset - limit)}
+                  className={s.act}
+                >
                   «
                 </button>
               )}
               <p>{page}</p>
               {page + 1 <= pages && (
                 <button
-                  onClick={() => setOffset(limit * (page - 1) + 1)}
+                  onClick={() => setOffset(limit * page)}
                   className={s.act}
                 >
                   »
