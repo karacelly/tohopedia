@@ -31,6 +31,9 @@ const Shop = () => {
           name
           image
         }
+        products {
+          id
+        }
       }
     }
   `;
@@ -51,6 +54,7 @@ const Shop = () => {
 
   const limit = 10;
   let nProd = shop?.products?.length;
+  console.log(shop);
   let page = Math.floor(offset / limit) + 1;
   let pages =
     nProd % limit == 0
@@ -367,19 +371,13 @@ const Shop = () => {
         </div>
         <div className={s.paginate}>
           {page - 1 > 0 && (
-            <button
-              onClick={() => setOffset(page > 2 ? offset - 10 : offset - 11)}
-              className={s.act}
-            >
+            <button onClick={() => setOffset(offset - limit)} className={s.act}>
               «
             </button>
           )}
           <p>{page}</p>
           {page + 1 <= pages && (
-            <button
-              onClick={() => setOffset(limit * page + 1)}
-              className={s.act}
-            >
+            <button onClick={() => setOffset(limit * page)} className={s.act}>
               »
             </button>
           )}
