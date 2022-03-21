@@ -84,6 +84,58 @@ const Shop = () => {
   });
   console.log(prod);
 
+  const searchQuery = gql`
+    query searchProduct(
+      $limit: Int
+      $offset: Int
+      $key: String!
+      $sortBy: Int
+      $filterBy: String
+    ) {
+      searchProduct(
+        limit: $limit
+        offset: $offset
+        key: $key
+        sortBy: $sortBy
+        filterBy: $filterBy
+      ) {
+        id
+        name
+        price
+        discount
+        images {
+          image
+        }
+      }
+    }
+  `;
+
+  const {
+    loading: allLoad,
+    error: allError,
+    data: all,
+  } = useQuery(searchQuery, {
+    variables: {
+      key: "",
+      limit: 10,
+      offset: 0,
+      sortBy: 6,
+    },
+  });
+
+  const {
+    loading: recLoad,
+    error: recError,
+    data: rec,
+  } = useQuery(searchQuery, {
+    variables: {
+      key: "",
+      limit: 10,
+      offset: 0,
+      sortBy: 4,
+    },
+  });
+
   if (shopLoad || prodLoad) {
     return <div>Loading ...</div>;
   }
@@ -204,6 +256,78 @@ const Shop = () => {
               <YouTube className={s.video} videoId={shop?.promotionalVid} />
             )}
           </div>
+        </div>
+        <div className={s.title}>
+          <h3>Best Seller</h3>
+        </div>
+        <div className={s.cards}>
+          {all?.searchProduct?.length > 0 ? (
+            all?.searchProduct.map((p: any) => {
+              return (
+                <Card key={p?.id} className={s.card}>
+                  <Link href={`/${shopName}/${p.id}`}>
+                    <a>
+                      <div className={s.info}>
+                        <div className={s.img}>
+                          <Image
+                            src={p?.images[0] ? p?.images[0].image : nophoto}
+                            alt="shop img"
+                            layout="fill"
+                            objectFit="cover"
+                          ></Image>
+                        </div>
+                        <h4>{p?.name}</h4>
+                      </div>
+                      <div>
+                        <span>Rp. {p.price}</span>
+                      </div>
+                      <div>
+                        <span>Stock {p.stock}</span>
+                      </div>
+                    </a>
+                  </Link>
+                </Card>
+              );
+            })
+          ) : (
+            <tr>No products</tr>
+          )}
+        </div>
+        <div className={s.title}>
+          <h3>Recommended For You</h3>
+        </div>
+        <div className={s.cards}>
+          {rec?.searchProduct?.length > 0 ? (
+            rec?.searchProduct.map((p: any) => {
+              return (
+                <Card key={p?.id} className={s.card}>
+                  <Link href={`/${shopName}/${p.id}`}>
+                    <a>
+                      <div className={s.info}>
+                        <div className={s.img}>
+                          <Image
+                            src={p?.images[0] ? p?.images[0].image : nophoto}
+                            alt="shop img"
+                            layout="fill"
+                            objectFit="cover"
+                          ></Image>
+                        </div>
+                        <h4>{p?.name}</h4>
+                      </div>
+                      <div>
+                        <span>Rp. {p.price}</span>
+                      </div>
+                      <div>
+                        <span>Stock {p.stock}</span>
+                      </div>
+                    </a>
+                  </Link>
+                </Card>
+              );
+            })
+          ) : (
+            <tr>No products</tr>
+          )}
         </div>
         <div className={s.title}>
           <h3>All Products</h3>

@@ -745,23 +745,27 @@ const LoggedNavbar = () => {
                 onMouseEnter={shopHovering}
                 onMouseLeave={shopLeaving}
               >
-                <Card>
-                  <div className={styles.prof}>
-                    <div className={styles.circle}>
-                      <Image
-                        src={
-                          data?.getCurrentShop?.image
-                            ? data?.getCurrentShop?.image
-                            : defaultShop
-                        }
-                        alt="user"
-                        objectFit="cover"
-                        layout="fill"
-                      ></Image>
-                    </div>
-                    <h3>{data ? data?.getCurrentShop?.name : "Shop"}</h3>
-                  </div>
-                </Card>
+                <Link href={`/${data?.getCurrentShop?.slug}`} passHref>
+                  <a>
+                    <Card>
+                      <div className={styles.prof}>
+                        <div className={styles.circle}>
+                          <Image
+                            src={
+                              data?.getCurrentShop?.image
+                                ? data?.getCurrentShop?.image
+                                : defaultShop
+                            }
+                            alt="user"
+                            objectFit="cover"
+                            layout="fill"
+                          ></Image>
+                        </div>
+                        <h3>{data ? data?.getCurrentShop?.name : "Shop"}</h3>
+                      </div>
+                    </Card>
+                  </a>
+                </Link>
                 <div className={styles.flex}>
                   <div className={styles.flexRight}>
                     <div className={styles.navMenu}>

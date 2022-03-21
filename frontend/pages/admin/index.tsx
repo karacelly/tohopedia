@@ -83,11 +83,14 @@ const Dashboard = () => {
 
   let third = [];
   if (d3 && d3?.suspendedUser) {
-    console.log(d3?.suspendedUser);
-    third = d3?.suspendedUser?.map((p: any) => ({
-      name: p?.name,
-      count: p?.count,
-    }));
+    console.log(d3?.suspendedUser[1].count);
+    third = [
+      {
+        suspended: d3.suspendedUser[0].count,
+        unsuspended: d3.suspendedUser[1].count,
+      },
+    ];
+
     console.log(third);
   }
 
@@ -99,28 +102,46 @@ const Dashboard = () => {
     <>
       <div className={s.body}>
         <LoggedNavbar></LoggedNavbar>
+        <div className={s.title}>
+          <h2>Hello, admin!</h2>
+        </div>
         <div className={s.container}>
-          <h3>Product Per Category</h3>
-          <PieChart width={300} height={200}>
-            <Pie
-              dataKey="count"
-              data={first}
-              cx="50%"
-              cy="50%"
-              outerRadius={100}
-              fill="#03ac0e"
-            />
-          </PieChart>
-          <h3>Product Per Category</h3>
-          <BarChart width={300} height={250} data={second}>
-            <Bar dataKey="count" fill="#03ac0e" />
-            <Legend></Legend>
-          </BarChart>
-          <h3>User Status</h3>
-          <BarChart width={200} height={250} data={third}>
-            <Bar dataKey="count" fill="#03ac0e" />
-            <Legend></Legend>
-          </BarChart>
+          <div className={s.data}>
+            <h3>Product Per Category</h3>
+            <PieChart width={300} height={200}>
+              <Pie
+                dataKey="count"
+                data={first}
+                cx="50%"
+                cy="50%"
+                outerRadius={100}
+                fill="#03ac0e"
+              />
+              <Tooltip />
+            </PieChart>
+          </div>
+          <div className={s.data}>
+            <h3>Product Per Category</h3>
+            <BarChart width={400} height={250} data={second}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Bar dataKey="count" fill="#03ac0e" />
+              <Tooltip />
+            </BarChart>
+          </div>
+          <div className={s.data}>
+            <h3>User Status</h3>
+            <BarChart width={300} height={250} data={third}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Bar dataKey="suspended" fill="red" />
+              <Bar dataKey="unsuspended" fill="#03ac0e" />
+
+              <Legend></Legend>
+            </BarChart>
+          </div>
         </div>
         <Footer></Footer>
       </div>

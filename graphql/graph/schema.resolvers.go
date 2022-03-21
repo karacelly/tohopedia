@@ -888,6 +888,7 @@ func (r *queryResolver) SearchProduct(ctx context.Context, limit *int, offset *i
 	// 3 -> rating
 	// 4 -> highest price
 	// 5 -> lowest price
+	// 6 -> terjual
 
 	if limit != nil && offset != nil {
 		fmt.Println(*sortBy)
@@ -910,6 +911,10 @@ func (r *queryResolver) SearchProduct(ctx context.Context, limit *int, offset *i
 			}
 		} else if *sortBy == 5 {
 			if err := db.Where("name LIKE ?", ("%" + key + "%")).Limit(*limit).Offset(*offset).Order("(price - (price * discount/100)) asc").Find(&models).Error; err != nil {
+				return nil, err
+			}
+		}else if *sortBy == 6 {
+			if err := db.Where("name LIKE ?", ("%" + key + "%")).Limit(*limit).Offset(*offset).Order("sold").Find(&models).Error; err != nil {
 				return nil, err
 			}
 		}
