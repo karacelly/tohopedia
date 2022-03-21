@@ -31,6 +31,7 @@ const Checkout = () => {
   const [voucherDiscount, setVoucherDiscount] = useState(0);
 
   const [chosenAddress, setChosenAddress] = useState();
+  const [chosenShippingId, setChosenShippingId] = useState("");
   const [addressPopUp, setAddressPopUp] = useState(false);
 
   useEffect(() => {
@@ -114,6 +115,7 @@ const Checkout = () => {
         id
         name
         shippings {
+          id
           label
           duration
           lateProb
@@ -125,10 +127,40 @@ const Checkout = () => {
 
   const { loading: cLoad, error: cErr, data: courier } = useQuery(courierQuery);
 
+  const createTransactionQuery = gql`
+    mutation createTransaction(
+      $chosenAddressId: String!
+      $courierId: String!
+      $shippingId: String!
+      $voucherId: String!
+      $productIds: [String!]!
+      $qtys: [Int!]!
+      $totalPrice: Int!
+    ) {
+      createTransaction(
+        input: {
+          chosenAddressId: $chosenAddressId
+          courierId: $courierId
+          shippingId: $shippingId
+          voucherId: $voucherId
+          productIds: $productIds
+          qtys: $qtys
+        }
+        totalPrice: $totalPrice
+      ) {
+        id
+      }
+    }
+  `;
+
+  const [createTransaction] = useMutation(createTransactionQuery);
+
   const vouchers = [];
   const carts = [];
   const couriers = [];
   let shippings = [];
+  let productIds = [];
+  let qtys = [];
 
   useEffect(() => {
     let totalPrice = 0;
@@ -172,6 +204,7 @@ const Checkout = () => {
                 if (addr?.isMain) {
                   return (
                     <div className={s.chosenAddress}>
+                      {setChosenAddress(addr)}
                       <h4>
                         {addr?.receiver} ({addr?.label})
                       </h4>
@@ -197,8 +230,11 @@ const Checkout = () => {
                 user?.carts.map((c: any, idx: any) => {
                   if (c?.checked) {
                     carts.push(c);
+                    console.log(c?.product?.id);
+                    productIds.push(c?.product?.id);
+                    qtys.push(c?.quantity);
                   }
-                  return (
+                  return c?.checked ? (
                     <Card key={idx} className={s.cartCheckout}>
                       <h5>{c?.product?.shop?.name}</h5>
                       <div className={s.product}>
@@ -241,7 +277,7 @@ const Checkout = () => {
                         </div>
                       </div>
                     </Card>
-                  );
+                  ) : null;
                 })
               ) : (
                 <div>Keranjangmu kosong!</div>
@@ -254,6 +290,7 @@ const Checkout = () => {
                   id="kurir"
                   onChange={(e) => {
                     setChosenCourier(e.target.value);
+                    console.log(e.target.value);
                   }}
                 >
                   <option value="">Pilih kurir</option>
@@ -281,7 +318,13 @@ const Checkout = () => {
 
                 {chosenCourier != "" ? (
                   <div className={s.ships}>
-                    <select>
+                    <select
+                      id="shipping"
+                      onChange={(e) => {
+                        console.log(e.target.value);
+                        setChosenShippingId(e.target.value);
+                      }}
+                    >
                       <option value="">Pilih durasi</option>
                       {shippings?.length > 0
                         ? shippings?.map((s: any, id: any) => {
@@ -329,8 +372,51 @@ const Checkout = () => {
                 <h4>Rp{price - discount - voucherDiscount}</h4>
               </div>
               <div className={s.buy}>
-                <button onClick={() => {}}>Beli</button>
+                <button
+                  onClick={async () => {
+                    let okay = false;
+
+                    if (
+                      chosenAddress == undefined ||
+                      chosenCourier == "" ||
+                      chosenShippingId == "" ||
+                      voucherID == "" ||
+                      productIds.length < 1 ||
+                      qtys.length < 1
+                    ) {
+                      setErrorMsg("Fill all fields!");
+                    } else {
+                      okay = true;
+                    }
+                    let chosenAddressId = chosenAddress?.id;
+
+                    if (okay) {
+                      try {
+                        await createTransaction({
+                          variables: {
+                            chosenAddressId: chosenAddressId,
+                            courierId: chosenCourier,
+                            shippingId: chosenShippingId,
+                            voucherId: voucherID,
+                            productIds: productIds,
+                            qtys: qtys,
+                            totalPrice: price,
+                          },
+                        });
+                        setErrorMsg("");
+                      } catch (error) {
+                        if (error.message == "Invalid balance!") {
+                          setErrorMsg(error.message);
+                        }
+                        console.log(error);
+                      }
+                    }
+                  }}
+                >
+                  Beli
+                </button>
               </div>
+              <p style={{ color: "red" }}>{errorMsg ? errorMsg : null}</p>
             </div>
           </Card>
         </div>
@@ -495,7 +581,14 @@ const Checkout = () => {
                           {add?.city}, {add?.postalCode}
                         </p>
                       </div>
-                      <div className={s.btn}>
+                      <div
+                        className={s.btn}
+                        onClick={() => {
+                          console.log("halo");
+                          setChosenAddress(add);
+                          setAddressPopUp(false);
+                        }}
+                      >
                         <button>Pilih</button>
                       </div>
                     </div>
@@ -514,7 +607,15 @@ const Checkout = () => {
                         </p>
                       </div>
                       <div className={s.btn}>
-                        <button>Pilih</button>
+                        <button
+                          onClick={() => {
+                            setChosenAddress(add);
+                            setAddressPopUp(false);
+                            console.log("halo");
+                          }}
+                        >
+                          Pilih
+                        </button>
                       </div>
                     </div>
                   );

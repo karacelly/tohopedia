@@ -668,6 +668,78 @@ func (r *mutationResolver) CreateShipping(ctx context.Context, input model.NewSh
 	return newShipping, db.Create(newShipping).Error
 }
 
+func (r *mutationResolver) CreateTransaction(ctx context.Context, input model.NewTransaction, totalPrice int) (*model.TransactionHeader, error) {
+	// panic(fmt.Errorf("not implemented"))
+	db := config.GetDB()
+
+	if ctx.Value("auth") == nil {
+		return nil, &gqlerror.Error{
+			Message: "Error, token gaada",
+		}
+	}
+
+	userId := ctx.Value("auth").(*service.JwtCustomClaim).ID
+
+	user := new(model.User)
+	if err := db.FirstOrInit(user, "id = ?", userId).Error; err != nil {
+		return nil, err
+	}
+
+	if user.Balance < totalPrice {
+		return nil, &gqlerror.Error{
+			Message: "Invalid balance!",
+		}
+	} else {
+		user.Balance -= totalPrice
+	}
+
+	if err := db.Save(user).Error; err != nil {
+		return nil, err
+	}
+
+	transactionId := uuid.NewString()
+	transactionHeader := &model.TransactionHeader{
+		ID:              transactionId,
+		UserID:          userId,
+		ChosenAddressID: input.ChosenAddressID,
+		CourierID:       input.CourierID,
+		ShippingID:      input.ShippingID,
+		VoucherID:       input.VoucherID,
+	}
+
+	err := db.Create(transactionHeader).Error
+
+	if err == nil {
+		for i := 0; i < len(input.ProductIds); i++ {
+			detail := &model.TransactionDetail{
+				ID:                  uuid.NewString(),
+				TransactionHeaderID: transactionId,
+				ProductID:           input.ProductIds[i],
+				Quantity:            input.Qtys[i],
+			}
+
+			product := new(model.Product)
+			if err := db.FirstOrInit(product, "id = ?", input.ProductIds[i]).Error; err != nil {
+				return nil, err
+			}
+
+			product.Stock -= input.Qtys[i]
+
+			if err := db.Save(product).Error; err != nil {
+				return nil, err
+			}
+
+			err := db.Create(detail).Error
+
+			if err != nil {
+				return nil, err
+			}
+		}
+	}
+
+	return transactionHeader, err
+}
+
 func (r *productResolver) Images(ctx context.Context, obj *model.Product) ([]*model.ProductImage, error) {
 	db := config.GetDB()
 	var images []*model.ProductImage
@@ -988,6 +1060,52 @@ func (r *queryResolver) Protected(ctx context.Context) (string, error) {
 	return "Success", nil
 }
 
+func (r *queryResolver) ProductPerCategory(ctx context.Context) ([]*model.DataMap, error) {
+	db := config.GetDB()
+
+	var models []*model.DataMap
+    return models, db.Raw(`SELECT
+                                c.name,
+                                COUNT(*) as "count"
+                            FROM 
+                                products p
+                                JOIN categories c ON c.id = p.category_id
+                            GROUP BY c.id, c.name`).Find(&models).Error
+}
+
+func (r *queryResolver) TransactionPerCourier(ctx context.Context) ([]*model.DataMap, error) {
+	db := config.GetDB()
+
+	var models []*model.DataMap
+    return models, db.Raw(`SELECT
+                                c.name,
+                                COUNT(*) as "count"
+                            FROM 
+                                transaction_headers th
+                                JOIN couriers c ON c.id = th.courier_id
+                            GROUP BY c.id, c.name`).Find(&models).Error
+}
+
+func (r *queryResolver) SuspendedUser(ctx context.Context) ([]*model.DataMap, error) {
+	db := config.GetDB()
+
+	var models []*model.DataMap
+    return models, db.Raw(`SELECT
+																"suspended" as name,
+                                COUNT(*) as "count"
+                            FROM 
+                                users
+														WHERE is_suspended = true
+                            UNION
+														SELECT
+																"unsuspended" as name,
+                                COUNT(*) as "count"
+                            FROM 
+                                users
+														WHERE is_suspended = false
+														`).Find(&models).Error
+}
+
 func (r *shippingResolver) Courier(ctx context.Context, obj *model.Shipping) (*model.Courier, error) {
 	db := config.GetDB()
 	courier := new(model.Courier)
@@ -1050,6 +1168,14 @@ func (r *shopPromoResolver) Shop(ctx context.Context, obj *model.ShopPromo) (*mo
 	return shop, nil
 }
 
+func (r *transactionDetailResolver) TransactionHeader(ctx context.Context, obj *model.TransactionDetail) (*model.TransactionHeader, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+
+func (r *transactionHeaderResolver) TransactionDetail(ctx context.Context, obj *model.TransactionHeader) ([]*model.TransactionDetail, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+
 func (r *userResolver) Shop(ctx context.Context, obj *model.User) (*model.Shop, error) {
 	db := config.GetDB()
 	var shop *model.Shop
@@ -1068,6 +1194,10 @@ func (r *userResolver) Carts(ctx context.Context, obj *model.User) ([]*model.Car
 	}
 
 	return wl, nil
+}
+
+func (r *userResolver) Transactions(ctx context.Context, obj *model.User) ([]*model.TransactionHeader, error) {
+	panic(fmt.Errorf("not implemented"))
 }
 
 func (r *userResolver) Wishlist(ctx context.Context, obj *model.User) ([]*model.Wishlist, error) {
@@ -1157,6 +1287,16 @@ func (r *Resolver) Shop() generated.ShopResolver { return &shopResolver{r} }
 // ShopPromo returns generated.ShopPromoResolver implementation.
 func (r *Resolver) ShopPromo() generated.ShopPromoResolver { return &shopPromoResolver{r} }
 
+// TransactionDetail returns generated.TransactionDetailResolver implementation.
+func (r *Resolver) TransactionDetail() generated.TransactionDetailResolver {
+	return &transactionDetailResolver{r}
+}
+
+// TransactionHeader returns generated.TransactionHeaderResolver implementation.
+func (r *Resolver) TransactionHeader() generated.TransactionHeaderResolver {
+	return &transactionHeaderResolver{r}
+}
+
 // User returns generated.UserResolver implementation.
 func (r *Resolver) User() generated.UserResolver { return &userResolver{r} }
 
@@ -1179,6 +1319,8 @@ type queryResolver struct{ *Resolver }
 type shippingResolver struct{ *Resolver }
 type shopResolver struct{ *Resolver }
 type shopPromoResolver struct{ *Resolver }
+type transactionDetailResolver struct{ *Resolver }
+type transactionHeaderResolver struct{ *Resolver }
 type userResolver struct{ *Resolver }
 type voucherResolver struct{ *Resolver }
 type wishlistResolver struct{ *Resolver }
@@ -1189,6 +1331,9 @@ type wishlistResolver struct{ *Resolver }
 //  - When renaming or deleting a resolver the old code will be put in here. You can safely delete
 //    it when you're done.
 //  - You have helper methods in this file. Move them out to keep these resolver files clean.
+func (r *transactionDetailResolver) Transaction(ctx context.Context, obj *model.TransactionDetail) (*model.TransactionHeader, error) {
+	panic(fmt.Errorf("not implemented"))
+}
 func (r *shippingResolver) Price(ctx context.Context, obj *model.Shipping) (int, error) {
 	panic(fmt.Errorf("not implemented"))
 }
