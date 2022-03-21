@@ -15,7 +15,12 @@ import { checkCookies } from "cookies-next";
 const Cart = () => {
   const [discount, setDiscount] = useState(0);
   const [price, setPrice] = useState(0);
-  const [voucherPopUp, setVoucherPopUp] = useState(0);
+  const [voucherPopUp, setVoucherPopUp] = useState(false);
+  const [voucherInput, setVoucherInput] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [chosen, setChosen] = useState();
+  const [voucherID, setVoucherID] = useLocalStorage("voucher", "");
+  const [voucherDiscount, setVoucherDiscount] = useState(0);
 
   useEffect(() => {
     if (!checkCookies("user")) {
@@ -34,6 +39,7 @@ const Cart = () => {
             image
           }
           shop {
+            id
             name
           }
           price
@@ -142,6 +148,31 @@ const Cart = () => {
 
   const [addToWishlist] = useMutation(addToWishlistQuery);
 
+  const voucherQuery = gql`
+    query vouchers {
+      vouchers {
+        id
+        name
+        description
+        discountRate
+        condition
+        startDate
+        endDate
+        global
+        shop {
+          id
+          name
+        }
+      }
+    }
+  `;
+
+  const { loading: vLoad, error: vErr, data: vData } = useQuery(voucherQuery);
+  console.log(vData);
+
+  const vouchers = [];
+  const carts = [];
+
   useEffect(() => {
     let totalPrice = 0;
     let totalDisc = 0;
@@ -168,6 +199,9 @@ const Cart = () => {
           <h3>Keranjang</h3>
           {data?.carts.length > 0 ? (
             data?.carts.map((c: any, idx: any) => {
+              if (c?.checked) {
+                carts.push(c);
+              }
               return (
                 <Card key={idx} className={s.cart}>
                   <h5>{c?.product?.shop?.name}</h5>
@@ -242,7 +276,9 @@ const Cart = () => {
                             } catch (error) {
                               console.log(error);
                             }
+                            Router.reload();
                           }}
+                          style={{ cursor: "pointer" }}
                         >
                           Move to Wishlist
                         </p>
@@ -258,7 +294,7 @@ const Cart = () => {
                             } catch (error) {
                               console.log(error);
                             }
-                            // Router.reload();
+                            Router.reload();
                           }}
                         >
                           <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
@@ -316,31 +352,171 @@ const Cart = () => {
         </div>
         <div className={s.containerRight}>
           <Card>
-            <div className={s.promo}>
-              <h5>Makin hemat pakai promo {">"}</h5>
+            <div
+              className={s.promo}
+              onClick={() => {
+                setVoucherPopUp(true);
+              }}
+            >
+              <h5>
+                {chosen
+                  ? `Kamu bisa hemat Rp${voucherDiscount}`
+                  : "Makin hemat pakai promo >"}
+              </h5>
             </div>
             <div className={s.summary}>
               <h4>Ringkasan belanja</h4>
               <div className={s.summaryUp}>
-                <span>Total Harga (2 barang)</span>
+                <span>Total Harga ({carts.length} barang)</span>
                 <span>Rp{price}</span>
               </div>
               <div className={s.summaryDown}>
                 <span>Total Diskon Barang</span>
-                <span>-Rp{discount}</span>
+                <span>-Rp{discount + voucherDiscount}</span>
               </div>
               <div className={s.total}>
                 <h4>Total Harga</h4>
-                <h4>Rp{price - discount}</h4>
+                <h4>Rp{price - discount - voucherDiscount}</h4>
               </div>
               <div className={s.buy}>
-                <button>Beli</button>
+                <button
+                  onClick={() => {
+                    Router.push("/user/cart/checkout");
+                  }}
+                >
+                  Beli
+                </button>
               </div>
             </div>
           </Card>
         </div>
       </div>
+      {voucherPopUp && (
+        <div className={s.voucherCon}>
+          <div className={s.popUp}>
+            <div className={s.vTitle}>
+              <p
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  setVoucherPopUp(false);
+                }}
+              >
+                {"<"}
+              </p>
+              <h3>Pakai Promo</h3>
+            </div>
+            {chosen && (
+              <div className={s.chosen}>
+                <h4>1 promo dipilih</h4>
+              </div>
+            )}
 
+            <div className={s.vInput}>
+              <input
+                type="text"
+                defaultValue={chosen?.id}
+                placeholder="Masukkan kode voucher"
+                onChange={(e) => {
+                  setVoucherInput(e.target.value);
+                }}
+              />
+              <button
+                onClick={() => {
+                  console.log(carts);
+
+                  for (let i = 0; i < vouchers.length; i++) {
+                    const vo = vouchers[i];
+                    if (vo?.id == voucherInput) {
+                      if (vo?.global) {
+                        setChosen(vo);
+                        setVoucherID(vo?.id);
+                      } else {
+                        for (let j = 0; j < carts.length; j++) {
+                          const ca = carts[j];
+
+                          if (ca?.product?.shop?.id == vo?.shop?.id) {
+                            setChosen(vo);
+                            setVoucherID(vo?.id);
+                          } else {
+                            break;
+                          }
+                        }
+                      }
+                      break;
+                    }
+                  }
+                }}
+              >
+                Terapkan
+              </button>
+            </div>
+            <p style={{ color: "red" }}>{errorMsg ? errorMsg : null}</p>
+            <h4>Kupon Saya</h4>
+            <div className={s.vouchers}>
+              {vData?.vouchers?.length > 0
+                ? vData?.vouchers?.map((v: any, idx: any) => {
+                    vouchers.push(v);
+                    return v?.global ? (
+                      <Card key={idx} className={s.voucherCard}>
+                        <h4>{v?.name}</h4>
+                        <span>Kode: {v?.id}</span>
+                        <p>{v?.description}</p>
+                        <p>{v?.condition}</p>
+                      </Card>
+                    ) : null;
+                  })
+                : null}
+            </div>
+            <h4>Kupon Toko</h4>
+            <div className={s.vouchers}>
+              {vouchers?.length > 0
+                ? vouchers?.map((v: any, idx: any) => {
+                    return !v?.global ? (
+                      <Card key={idx} className={s.voucherCard}>
+                        <h4>{v?.name}</h4>
+                        <span>Kode: {v?.id}</span>
+                        <p>{v?.description}</p>
+                        <p>{v?.condition}</p>
+                      </Card>
+                    ) : null;
+                  })
+                : null}
+            </div>
+            <div
+              className={s.btn}
+              onClick={() => {
+                if (chosen) {
+                  let chosendisc = 0;
+                  if (chosen?.global == true) {
+                    for (let i = 0; i < carts.length; i++) {
+                      const c = carts[i];
+                      console.log(c);
+                      console.log(chosen);
+                      // c?.price -= c?.price * chosen?.discountRate;
+                      chosendisc +=
+                        c?.product?.price * (chosen?.discountRate / 100);
+                    }
+                  } else {
+                    for (let i = 0; i < carts.length; i++) {
+                      const c = carts[i];
+                      console.log(c);
+                      if (c?.product?.shop?.id == chosen?.shop?.id) {
+                        chosendisc +=
+                          c?.product?.price * (chosen?.discountRate / 100);
+                      }
+                    }
+                  }
+                  setVoucherDiscount(chosendisc);
+                  console.log(chosendisc);
+                }
+                setVoucherPopUp(false);
+              }}
+            >
+              <button>Pakai promo</button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className={s.wishlist}>
         {d?.wishlists.length > 0 ? (
           <div className={s.title}>
@@ -433,3 +609,32 @@ const Cart = () => {
 };
 
 export default Cart;
+
+function useLocalStorage(key, initialValue) {
+  const [storedValue, setStoredValue] = useState(() => {
+    if (typeof window === "undefined") {
+      return initialValue;
+    }
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      console.log(error);
+      return initialValue;
+    }
+  });
+  const setValue = (value) => {
+    try {
+      const valueToStore =
+        value instanceof Function ? value(storedValue) : value;
+      setStoredValue(valueToStore);
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return [storedValue, setValue];
+}

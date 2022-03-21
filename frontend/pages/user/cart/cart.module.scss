@@ -1,19 +1,21 @@
 .body {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .container {
   display: flex;
   margin: 3vh 10vw;
   justify-content: space-around;
+  position: relative;
 }
 
 .img {
   position: relative;
-  width: 7vw;
-  height: 7vw;
-  margin-right: 2vw;
+  width: 3vw;
+  height: 3vw;
+  margin-right: 1vw;
 }
 
 .containerLeft {
@@ -22,6 +24,7 @@
 
 .containerRight {
   width: 30%;
+  position: sticky;
 }
 
 .product {
@@ -88,9 +91,11 @@
 .detail {
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   p {
     margin: 0;
+    font-size: 1vw;
   }
 }
 
@@ -102,14 +107,14 @@
   span {
     background-color: red;
     color: white;
-    font-size: 1vw;
+    font-size: 0.8vw;
     padding: 0.25vh 0.25vw;
     margin-right: 1vw;
   }
 
   p {
     text-decoration: line-through;
-    font-size: 1vw;
+    font-size: 0.8vw;
     margin-right: 0.5vw;
   }
 }
@@ -146,9 +151,109 @@
     background-color: $primary-color;
     border: 0;
     border-radius: 5px;
-    height: 4vh;
+    height: 6vh;
     color: white;
     font-weight: bold;
+    font-size: 2vh;
+  }
+
+  button:hover {
+    background-color: $secondary-color;
+  }
+}
+
+.voucherCon {
+  position: fixed;
+  background-color: rgb(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  padding-top: 10vh;
+}
+
+.popUp {
+  background-color: white;
+  width: 35vw;
+  max-height: 85vh;
+  border-radius: 10px;
+  padding: 1.5vh 1.5vw;
+  overflow: auto;
+}
+
+.vTitle {
+  display: flex;
+  align-items: center;
+
+  p {
+    padding-right: 1vw;
+  }
+}
+
+.chosen {
+  margin-bottom: 2vh;
+  padding: 2vh 2vw;
+  color: white;
+  background-color: #1e9c67;
+  border-radius: 5px;
+
+  h4 {
+    margin: 0;
+  }
+}
+
+.vInput {
+  display: flex;
+  justify-content: space-between;
+
+  input,
+  button {
+    border: 1px solid rgb(173, 173, 173);
+    border-radius: 5px;
+    padding: 1vh 2vw;
+    color: white;
+    background-color: $primary-color;
+    border-color: $primary-color;
+  }
+
+  input {
+    width: 70%;
+  }
+
+  button:hover {
+    background-color: $secondary-color;
+  }
+}
+
+.btn {
+  width: 100%;
+  display: flex;
+  margin: 3vh 0;
+  justify-content: center;
+
+  button {
+    padding: 1vh 2vw;
+    color: white;
+    border: 1px solid $primary-color;
+    background-color: $primary-color;
+    border-color: $primary-color;
+    border-radius: 5px;
+  }
+
+  button:hover {
+    background-color: $secondary-color;
+  }
+}
+
+.voucherCard {
+  h4,
+  p {
+    margin: 0;
+  }
+
+  span {
+    color: rgb(170, 170, 170);
   }
 }
 
@@ -226,6 +331,217 @@
   }
 }
 
+.innerCon {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0, 0, 0, 0.4);
+  z-index: 1;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .form {
+    background-color: white;
+    margin: 0;
+    padding: 5vh 5vw;
+    border-radius: 5px;
+    width: 70%;
+    max-height: 70%;
+    overflow: auto;
+
+    .mainDets {
+      display: flex;
+      align-items: center;
+
+      .isMain {
+        span {
+          padding: 1vh 1vw;
+          background-color: "#ebffef";
+          color: $primary-color;
+        }
+      }
+    }
+
+    form {
+      width: 100%;
+      padding-bottom: 3vh;
+    }
+  }
+
+  .field {
+    width: 100%;
+    margin: 3vh 0;
+    display: flex;
+    flex-direction: column;
+
+    input,
+    textarea {
+      border-radius: 5px;
+      border: 1px solid rgb(182, 182, 182);
+    }
+
+    input {
+      height: 4vh;
+    }
+
+    textarea {
+      height: 10vh;
+    }
+
+    label {
+      font-weight: bold;
+      font-size: 1.2vw;
+      padding-bottom: 1vh;
+    }
+  }
+
+  .back {
+    cursor: pointer;
+  }
+
+  .submit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5vh;
+
+    button {
+      padding: 1vh 3vw;
+      background-color: $primary-color;
+      color: white;
+      border: 0;
+      width: 30%;
+      border-radius: 5px;
+    }
+  }
+}
+
+.chosenAddress {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgb(185, 185, 185);
+  border-bottom: 1px solid rgb(185, 185, 185);
+  padding: 2vh 0;
+
+  h4 {
+    margin: 0;
+    padding-bottom: 1vh;
+  }
+
+  p,
+  span {
+    margin: 0;
+    font-size: 2vh;
+    padding: 0.5vh 0;
+  }
+}
+
+.address {
+  border: 1px solid $primary-color;
+  border-radius: 5px;
+  margin: 2vh 0;
+  padding: 3vh 1vw;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  h4,
+  h5 {
+    margin: 0;
+  }
+  p,
+  span {
+    margin: 0;
+    padding: 0.5vh 0;
+    font-size: 2vh;
+  }
+
+  .addressDets {
+    width: 70%;
+  }
+
+  .btn {
+    width: 20%;
+
+    button {
+      width: 100%;
+      height: 5vh;
+    }
+  }
+}
+
+.adrAction {
+  padding: 1vh 0;
+
+  button {
+    border: 1px solid rgb(185, 185, 185);
+    color: black;
+    background-color: white;
+    border-radius: 5px;
+    width: 10vw;
+    height: 5vh;
+    font-weight: bold;
+  }
+}
+
+.prodContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .prods {
+    width: 50%;
+  }
+
+  .shipping {
+    width: 50%;
+  }
+}
+
+.shipping {
+  padding-left: 2vw;
+}
+
+.courier {
+  select {
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    height: 5vh;
+    background-color: $primary-color;
+    color: white;
+    text-align: center;
+  }
+
+  option {
+    background-color: white;
+    color: rgb(68, 68, 68);
+    height: 5vh;
+  }
+}
+
+.ships {
+  padding: 1vh 0;
+
+  select {
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    height: 5vh;
+    background-color: white;
+    color: rgb(68, 68, 68);
+    text-align: center;
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .container {
     flex-direction: column;
@@ -243,6 +559,17 @@
 
     p {
       font-size: 2vw;
+    }
+  }
+
+  .innerCon {
+    .field {
+      label {
+        font-size: 3vw;
+      }
+    }
+    .form {
+      width: 90%;
     }
   }
 
@@ -304,6 +631,52 @@
   .acts {
     button {
       font-size: 1vh;
+    }
+  }
+
+  .popUp {
+    width: 90%;
+  }
+
+  .chosenAddress {
+    p,
+    span {
+      font-size: 1vh;
+    }
+  }
+
+  .detail {
+    p {
+      font-size: 1.5vh;
+    }
+  }
+
+  .adrAction {
+    cursor: pointer;
+    button {
+      font-size: 1vh;
+      width: 20vw;
+    }
+  }
+
+  .cartCheckout {
+    .cart {
+      h5 {
+        font-size: 1.5vh;
+        margin: 1vh 0;
+      }
+    }
+
+    .img {
+      width: 6vw;
+      height: 6vw;
+    }
+
+    .detail {
+      h5,
+      p {
+        font-size: 1vh;
+      }
     }
   }
 }

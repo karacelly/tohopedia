@@ -81,12 +81,16 @@ const ProductDetail = () => {
   });
 
   useEffect(() => {
-    if (data?.product?.shop?.id == currShop?.getCurrentShop.id) {
+    if (data?.product?.shop?.id === currShop?.getCurrentShop?.id) {
       setShopProd(true);
+    } else {
+      setShopProd(false);
     }
   }, [data, currShop]);
 
+  console.log(currShop);
   console.log(shopProd);
+  console.log(data?.product?.shop?.id);
 
   const addToCartQuery = gql`
     mutation addToCart($productId: String!, $quantity: Int!, $note: String!) {

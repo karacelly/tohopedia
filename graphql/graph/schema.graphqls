@@ -220,6 +220,29 @@ type ProductImage {
   image: String!
 }
 
+type Courier {
+  id: ID!
+  name: String!
+  shippings: [Shipping!]! @goField(forceResolver: true)
+}
+
+type Shipping {
+  id: ID!
+  label: String!
+  price: Int!
+  duration: Int!
+  lateProb: Int!
+  courier: Courier! @goField(forceResolver: true)
+}
+
+input NewShipping {
+  label: String!
+  price: Int!
+  duration: Int!
+  lateProb: Int!
+  courierId: String!
+}
+
 type AuthOps {
   login(email: String!, password: String!): Any! @goField(forceResolver: true)
   register(input: NewUser!): Any! @goField(forceResolver: true)
@@ -233,6 +256,7 @@ type Query {
   categories: [Category!]! @goField(forceResolver: true)
   addresses: [Address!]! @goField(forceResolver: true)
   carts: [Cart!]! @goField(forceResolver: true) @auth
+  couriers: [Courier!]! @goField(forceResolver: true)
   allProducts: [Product!]! @goField(forceResolver: true)
   products(limit: Int!, offset: Int!): [Product!]! @goField(forceResolver: true)
   searchProduct(
@@ -254,6 +278,7 @@ type Query {
     @goField(forceResolver: true)
     @auth
   wishlists: [Wishlist!]! @goField(forceResolver: true) @auth
+  vouchers: [Voucher!]!
   globalVouchers: [Voucher!]!
   shopVouchers(shopId: String!): [Voucher!]! @goField(forceResolver: true) @auth
   # Add Protected Resource
@@ -284,4 +309,6 @@ type Mutation {
   requestUnsuspend(userId: String!): User!
   resetPassword(userId: String!, newPassword: String!): User!
   topup(nominal: Int!): User! @auth
+  createCourier(name: String!): Courier!
+  createShipping(input: NewShipping!): Shipping!
 }

@@ -34,6 +34,7 @@ const LoggedNavbar = () => {
   const [shopHover, setShopHover] = useState(false);
   const [cartHover, setCartHover] = useState(false);
   const [catHover, setCatHover] = useState(false);
+  const [inboxHover, setInboxHover] = useState(false);
   const [addPopUp, setAddPopUp] = useState(false);
   const [addressPopUp, setAddressPopUp] = useState(false);
   const [isMain, setMain] = useState(false);
@@ -44,6 +45,7 @@ const LoggedNavbar = () => {
     setShopHover(false);
     setCartHover(false);
     setCatHover(false);
+    setInboxHover(false);
   };
   const userLeaving = () => setUserHover(false);
   const shopHovering = () => {
@@ -51,6 +53,7 @@ const LoggedNavbar = () => {
     setUserHover(false);
     setCartHover(false);
     setCatHover(false);
+    setInboxHover(false);
   };
   const shopLeaving = () => setShopHover(false);
   const cartHovering = () => {
@@ -58,6 +61,7 @@ const LoggedNavbar = () => {
     setUserHover(false);
     setCartHover(true);
     setCatHover(false);
+    setInboxHover(false);
   };
   const cartLeaving = () => setCartHover(false);
   const catHovering = () => {
@@ -65,8 +69,17 @@ const LoggedNavbar = () => {
     setUserHover(false);
     setCartHover(false);
     setCatHover(true);
+    setInboxHover(false);
   };
   const catLeaving = () => setCatHover(false);
+  const inboxHovering = () => {
+    setShopHover(false);
+    setUserHover(false);
+    setCartHover(false);
+    setCatHover(false);
+    setInboxHover(true);
+  };
+  const inboxLeaving = () => setInboxHover(false);
 
   const getCurrentShopQuery = gql`
     query getCurrentShop {
@@ -85,6 +98,7 @@ const LoggedNavbar = () => {
         name
         image
         role
+        balance
         addresses {
           id
           label
@@ -557,10 +571,30 @@ const LoggedNavbar = () => {
             </span>
           </div>
           <div className={styles.cart}>
-            <span>
+            <span onMouseEnter={inboxHovering}>
               <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
             </span>
           </div>
+          {inboxHover && (
+            <Card
+              id={styles.inboxHover}
+              onMouseEnter={inboxHovering}
+              onMouseLeave={inboxLeaving}
+            >
+              <div className={styles.cartContainer}>
+                <Link href={"/chat"}>
+                  <a>
+                    <p>Chat</p>
+                  </a>
+                </Link>
+                <Link href={"/review"}>
+                  <a>
+                    <p>Ulasan</p>
+                  </a>
+                </Link>
+              </div>
+            </Card>
+          )}
           <div className={styles.user}>
             <a className={styles.logged} onMouseEnter={shopHovering}>
               <div className={styles.profile}>
@@ -637,7 +671,7 @@ const LoggedNavbar = () => {
                   <div className={styles.flexLeft}>
                     <div className={styles.saldo}>
                       <p>Saldo</p>
-                      <p>Rp 0</p>
+                      <p>Rp {user?.getCurrentUser?.balance}</p>
                     </div>
                     <Link href={"/user/topup"}>
                       <a>
@@ -657,7 +691,7 @@ const LoggedNavbar = () => {
                   </div>
                   <div className={styles.flexRight}>
                     <div className={styles.navMenu}>
-                      <Link href={""}>
+                      <Link href={"/user/purchase"}>
                         <a>
                           <p>Pembelian</p>
                         </a>

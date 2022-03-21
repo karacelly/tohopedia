@@ -48,6 +48,16 @@ func (r *categoryResolver) Products(ctx context.Context, obj *model.Category) ([
 	panic(fmt.Errorf("not implemented"))
 }
 
+func (r *courierResolver) Shippings(ctx context.Context, obj *model.Courier) ([]*model.Shipping, error) {
+	db := config.GetDB()
+	var model []*model.Shipping
+	if err := db.Where("courier_id = ?", obj.ID).Find(&model).Error; err != nil {
+		return nil, err
+	}
+
+	return model, nil
+}
+
 func (r *mutationResolver) Auth(ctx context.Context) (*model.AuthOps, error) {
 	return &model.AuthOps{}, nil
 }
@@ -633,6 +643,31 @@ func (r *mutationResolver) Topup(ctx context.Context, nominal int) (*model.User,
 	return user, db.Save(user).Error
 }
 
+func (r *mutationResolver) CreateCourier(ctx context.Context, name string) (*model.Courier, error) {
+	db := config.GetDB()
+
+	newCourier := &model.Courier{
+		ID:   uuid.NewString(),
+		Name: name,
+	}
+
+	return newCourier, db.Create(newCourier).Error
+}
+
+func (r *mutationResolver) CreateShipping(ctx context.Context, input model.NewShipping) (*model.Shipping, error) {
+	db := config.GetDB()
+
+	newShipping := &model.Shipping{
+		ID:        uuid.NewString(),
+		Label:     input.Label,
+		Duration:  input.Duration,
+		LateProb:  input.LateProb,
+		CourierId: input.CourierID,
+	}
+
+	return newShipping, db.Create(newShipping).Error
+}
+
 func (r *productResolver) Images(ctx context.Context, obj *model.Product) ([]*model.ProductImage, error) {
 	db := config.GetDB()
 	var images []*model.ProductImage
@@ -745,6 +780,18 @@ func (r *queryResolver) Carts(ctx context.Context) ([]*model.Cart, error) {
 	}
 
 	return carts, nil
+}
+
+func (r *queryResolver) Couriers(ctx context.Context) ([]*model.Courier, error) {
+	db := config.GetDB()
+
+	var couriers []*model.Courier
+
+	if err := db.Find(&couriers).Error; err != nil {
+		return nil, err
+	}
+
+	return couriers, nil
 }
 
 func (r *queryResolver) AllProducts(ctx context.Context) ([]*model.Product, error) {
@@ -895,6 +942,18 @@ func (r *queryResolver) Wishlists(ctx context.Context) ([]*model.Wishlist, error
 	return wishlist, nil
 }
 
+func (r *queryResolver) Vouchers(ctx context.Context) ([]*model.Voucher, error) {
+	db := config.GetDB()
+
+	var vouchers []*model.Voucher
+
+	if err := db.Find(&vouchers).Error; err != nil {
+		return nil, err
+	}
+
+	return vouchers, nil
+}
+
 func (r *queryResolver) GlobalVouchers(ctx context.Context) ([]*model.Voucher, error) {
 	db := config.GetDB()
 
@@ -927,6 +986,17 @@ func (r *queryResolver) ShopVouchers(ctx context.Context, shopID string) ([]*mod
 
 func (r *queryResolver) Protected(ctx context.Context) (string, error) {
 	return "Success", nil
+}
+
+func (r *shippingResolver) Courier(ctx context.Context, obj *model.Shipping) (*model.Courier, error) {
+	db := config.GetDB()
+	courier := new(model.Courier)
+
+	if err := db.First(courier, "id = ?", obj.CourierId).Error; err != nil {
+		return nil, err
+	}
+
+	return courier, nil
 }
 
 func (r *shopResolver) User(ctx context.Context, obj *model.Shop) (*model.User, error) {
@@ -1058,6 +1128,9 @@ func (r *Resolver) Cart() generated.CartResolver { return &cartResolver{r} }
 // Category returns generated.CategoryResolver implementation.
 func (r *Resolver) Category() generated.CategoryResolver { return &categoryResolver{r} }
 
+// Courier returns generated.CourierResolver implementation.
+func (r *Resolver) Courier() generated.CourierResolver { return &courierResolver{r} }
+
 // Mutation returns generated.MutationResolver implementation.
 func (r *Resolver) Mutation() generated.MutationResolver { return &mutationResolver{r} }
 
@@ -1074,6 +1147,9 @@ func (r *Resolver) ProductMetadata() generated.ProductMetadataResolver {
 
 // Query returns generated.QueryResolver implementation.
 func (r *Resolver) Query() generated.QueryResolver { return &queryResolver{r} }
+
+// Shipping returns generated.ShippingResolver implementation.
+func (r *Resolver) Shipping() generated.ShippingResolver { return &shippingResolver{r} }
 
 // Shop returns generated.ShopResolver implementation.
 func (r *Resolver) Shop() generated.ShopResolver { return &shopResolver{r} }
@@ -1094,11 +1170,13 @@ type addressResolver struct{ *Resolver }
 type authOpsResolver struct{ *Resolver }
 type cartResolver struct{ *Resolver }
 type categoryResolver struct{ *Resolver }
+type courierResolver struct{ *Resolver }
 type mutationResolver struct{ *Resolver }
 type productResolver struct{ *Resolver }
 type productImageResolver struct{ *Resolver }
 type productMetadataResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
+type shippingResolver struct{ *Resolver }
 type shopResolver struct{ *Resolver }
 type shopPromoResolver struct{ *Resolver }
 type userResolver struct{ *Resolver }
@@ -1111,6 +1189,9 @@ type wishlistResolver struct{ *Resolver }
 //  - When renaming or deleting a resolver the old code will be put in here. You can safely delete
 //    it when you're done.
 //  - You have helper methods in this file. Move them out to keep these resolver files clean.
+func (r *shippingResolver) Price(ctx context.Context, obj *model.Shipping) (int, error) {
+	panic(fmt.Errorf("not implemented"))
+}
 func (r *productResolver) Rating(ctx context.Context, obj *model.Product) (float64, error) {
 	panic(fmt.Errorf("not implemented"))
 }
@@ -1131,17 +1212,6 @@ func (r *userResolver) Enable2fa(ctx context.Context, obj *model.User) (bool, er
 }
 func (r *voucherResolver) Description(ctx context.Context, obj *model.Voucher) (string, error) {
 	panic(fmt.Errorf("not implemented"))
-}
-func (r *queryResolver) Vouchers(ctx context.Context, shopID *string) ([]*model.Voucher, error) {
-	db := config.GetDB()
-
-	var vouchers []*model.Voucher
-
-	if err := db.Where("shop_id = ?", shopID).Find(&vouchers).Error; err != nil {
-		return nil, err
-	}
-
-	return vouchers, nil
 }
 func (r *newVoucherResolver) StartDate(ctx context.Context, obj *model.NewVoucher) (*time.Time, error) {
 	panic(fmt.Errorf("not implemented"))

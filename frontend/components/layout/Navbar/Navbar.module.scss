@@ -201,6 +201,24 @@
   }
 }
 
+#inboxHover {
+  background-color: white;
+  position: absolute;
+  top: 15vh;
+  right: 18vw;
+  z-index: 1;
+  width: 12vw;
+  max-height: 30vw;
+  overflow: auto;
+  color: rgb(63, 63, 63);
+
+  p,
+  h6 {
+    font-size: 2vh;
+    margin: 0;
+  }
+}
+
 #userHover {
   background-color: white;
   position: absolute;
@@ -459,6 +477,17 @@
       font-size: 2vw;
     }
 
+    p {
+      font-size: 2vw;
+    }
+  }
+
+  #inboxHover {
+    top: 11vh;
+    left: 30vw;
+    width: 20vw;
+
+    h6,
     p {
       font-size: 2vw;
     }
